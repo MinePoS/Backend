@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+if(Request::is('admin/*'))
+{
+    	require(__DIR__.'/admin/web.php');
+	
+}
