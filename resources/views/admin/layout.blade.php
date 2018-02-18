@@ -17,7 +17,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/admin/dist/css/skins/_all-skins.min.css">
-
+@yield('head')
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -116,15 +116,16 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li><a href="{{Route('admin.dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashbodard</span></li>
+        <li><a href="{{Route('admin.dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashbodard</span></a></li>
 
         @if(\Auth::user()->can('list servers') || \Auth::user()->can('create server'))
                 <li class="treeview">
+                  <a href="#">
                     <i class="fa fa-server"></i> <span>Servers</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
-                  
+                  </a>
                   <ul class="treeview-menu">
                     @if(\Auth::user()->can('create server'))
                     <li><a href="{{Route('admin.server.new')}}"><i class="fa fa-plus"></i> Create Server</a></li>
@@ -135,26 +136,32 @@
                   </ul>
                 </li>
         @endif
-        
 
-        @if(\Auth::user()->can('list admins') || \Auth::user()->can('create admin'))
+ @if(\Auth::user()->can('list users') || \Auth::user()->can('create user'))
                 <li class="treeview">
-                    <i class="fa fa-user"></i> <span>Admins</span>
+                  <a href="#">
+                    <i class="fa fa-user"></i> <span>Users</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
+                  </a>
                   
                   <ul class="treeview-menu">
-                    @if(\Auth::user()->can('create admin'))
-                    <li><a href="{{Route('admin.server.new')}}"><i class="fa fa-plus"></i> Create Admin</a></li>
+                    @if(\Auth::user()->can('create user'))
+                    <li><a href="{{Route('admin.users')}}"><i class="fa fa-plus"></i> Create User</a></li>
                     @endif
-                    @if(\Auth::user()->can('list admins'))
-                    <li><a href="{{Route('admin.servers')}}"><i class="fa fa-list"></i> Manage Admins</a></li>
+                    @if(\Auth::user()->can('list users'))
+                    <li><a href="{{Route('admin.users')}}"><i class="fa fa-list"></i> Manage Users</a></li>
                     @endif
                   </ul>
                 </li>
         @endif
+
+        @if(\Auth::user()->can('list permissions'))
+                    <li><a href="{{Route('admin.perms')}}"><i class="fa fa-list"></i> View Perms</a></li>
+                    @endif
       </ul>
+      
     </section>
     <!-- /.sidebar -->
   </aside>
@@ -183,10 +190,9 @@
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b>Version</b> 1.0.0-ALPHA
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-    reserved.
+    Copyright &copy; 2016 - {{date("Y")}} <strong><a href="https://minepos.net/">MinePoS</a></strong>
   </footer>
 </div>
 <!-- ./wrapper -->
@@ -208,5 +214,6 @@
     $('.sidebar-menu').tree()
   })
 </script>
+@yield('extra')
 </body>
 </html>

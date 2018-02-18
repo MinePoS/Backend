@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('title')
-Admins
+Users
 @endsection
 
 @section('desc')
@@ -10,6 +10,6 @@ Admins
 
 @section('content')
 <?php $users = App\User::paginate(15); ?>
-@include('admin.parts.adminstable')
+@include('admin.parts.userstable')
 
 @endsection

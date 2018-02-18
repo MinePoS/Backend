@@ -24,6 +24,9 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('servers','Admin\ServerController@index')->middleware('permission:list servers')->name('admin.servers');
 Route::get('servers/new','Admin\ServerController@index')->middleware('permission:create server')->name('admin.server.new');
 
-Route::get('admins','Admin\AdminController@index')->middleware('permission:list admins')->name('admin.admins');
+Route::get('users','Admin\UserController@index')->middleware('permission:list users')->name('admin.users');
+
+Route::get('perms','Admin\PermissionController@index')->middleware('permission:list permissions')->name('admin.perms');
+Route::post('perms','Admin\PermissionController@updaterole')->middleware('permission:assign perms to roles');
 
 });

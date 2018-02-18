@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
     public function __construct()
     {
@@ -18,7 +18,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.admin.index');
+        return view('admin.pages.user.index');
     }
 
     /**
