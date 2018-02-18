@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-if(Request::is('admin/*'))
+if(Request::is('admin/*') || Request::is('admin/') || Request::is('admin'))
 {
     	require(__DIR__.'/admin/web.php');
 	

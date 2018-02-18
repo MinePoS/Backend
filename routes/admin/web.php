@@ -1,4 +1,6 @@
 <?php
+Route::get('/admin', 'Admin\Dashboard@showDashboard');
+
 Route::group(['prefix' => 'admin'], function () {
 	// Registration Routes...
 	Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
@@ -14,4 +16,14 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 	Route::post('login', 'Auth\LoginController@login');
 	Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+	Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+	Route::get('dashboard', 'Admin\Dashboard@showDashboard')->name('admin.dashboard');
+	Route::get('403','Admin\ErrorController@forbiddenResponse')->name('admin.errors.403');
+
+Route::get('servers','Admin\ServerController@index')->middleware('permission:list servers')->name('admin.servers');
+Route::get('servers/new','Admin\ServerController@index')->middleware('permission:create server')->name('admin.server.new');
+
+Route::get('admins','Admin\AdminController@index')->middleware('permission:list admins')->name('admin.admins');
+
 });
