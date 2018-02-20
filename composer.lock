@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a28f38b71dec029da71e61fbbeda153e",
+    "content-hash": "479edaf12b959112c9ce35e7ecc38971",
     "packages": [
         {
             "name": "creativeorange/gravatar",
@@ -959,6 +959,43 @@
                 "php"
             ],
             "time": "2018-01-25T21:31:33+00:00"
+        },
+        {
+            "name": "nopjmp/discord-webhooks",
+            "version": "0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nopjmp/discord-webhooks.git",
+                "reference": "3d7db13d7def2f3386399d8e14070f62513a0db1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nopjmp/discord-webhooks/zipball/3d7db13d7def2f3386399d8e14070f62513a0db1",
+                "reference": "3d7db13d7def2f3386399d8e14070f62513a0db1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DiscordWebhooks\\": "DiscordWebhooks/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Thompson",
+                    "email": "jmp@const.ninja"
+                }
+            ],
+            "description": "A simple Discord webhook client library.",
+            "time": "2017-06-27T02:51:47+00:00"
         },
         {
             "name": "paragonie/random_compat",

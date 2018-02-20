@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Server;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+// d
 class ServerController extends Controller
 {
     public function __construct()

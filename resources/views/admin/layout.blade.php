@@ -67,7 +67,7 @@
 
                 <p>
                   {{Auth::user()->name}}
-                  <small>Admin since DATEHERE</small>
+                  <small>{{Auth::user()->getRole()}}</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -114,12 +114,13 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
+      @if(Auth::user()->getAllPermissions()->first() != null)
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li><a href="{{Route('admin.dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashbodard</span></a></li>
+        <li class="@if(\Request::is('admin/dashboard')) active @endif"><a href="{{Route('admin.dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashbodard</span></a></li>
 
         @if(\Auth::user()->can('list servers') || \Auth::user()->can('create server'))
-                <li class="treeview">
+                <li class="treeview @if(\Request::is('admin/servers*')) active @endif">
                   <a href="#">
                     <i class="fa fa-server"></i> <span>Servers</span>
                     <span class="pull-right-container">
@@ -137,8 +138,8 @@
                 </li>
         @endif
 
- @if(\Auth::user()->can('list users') || \Auth::user()->can('create user'))
-                <li class="treeview">
+        @if(\Auth::user()->can('list users') || \Auth::user()->can('create user'))
+                <li class="treeview @if(\Request::is('admin/users*')) active @endif">
                   <a href="#">
                     <i class="fa fa-user"></i> <span>Users</span>
                     <span class="pull-right-container">
@@ -157,11 +158,28 @@
                 </li>
         @endif
 
-        @if(\Auth::user()->can('list permissions'))
-                    <li><a href="{{Route('admin.perms')}}"><i class="fa fa-list"></i> View Perms</a></li>
+         @if(\Auth::user()->can('create new role') || \Auth::user()->can('view roles'))
+
+                <li class="treeview @if(\Request::is('admin/roles*')) active @endif" >
+                  <a href="#">
+                    <i class="fa fa-users" aria-hidden="true"></i> <span>Roles</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  
+                  <ul class="treeview-menu">
+                    @if(\Auth::user()->can('create new role'))
+                    <li><a href="{{Route('admin.roles.new')}}"><i class="fa fa-plus"></i> Create Role</a></li>
                     @endif
+                    @if(\Auth::user()->can('view roles'))
+                    <li><a href="{{Route('admin.roles')}}"><i class="fa fa-list"></i> Manage Roles</a></li>
+                    @endif
+                  </ul>
+                </li>
+        @endif
       </ul>
-      
+      @endif
     </section>
     <!-- /.sidebar -->
   </aside>

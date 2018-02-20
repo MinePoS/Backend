@@ -2,16 +2,12 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Responsive Hover Table</h3>
+              <h3 class="box-title">Users</h3>
 
               <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                  <input name="table_search" class="form-control pull-right" placeholder="Search" type="text">
 
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
+                   @can('create user') <a href="{{Route('admin.users.new')}}" class="btn btn-success"><i class="fa fa-plus"></i> New</a> @endcan
+
               </div>
             </div>
             <!-- /.box-header -->
@@ -21,6 +17,7 @@
                   <th>ID</th>
                   <th>Name</th>
                   <th>Email</th>
+                  <th>Role</th>
                   <th>Actions</th>
                 </tr>
     @foreach ($users as $user)
@@ -28,7 +25,8 @@
         <td>{{$user->id}}</td>
         <td>{{$user->name}}</td>
         <td>{{$user->email}}</td>
-        <td><span class="btn btn-primary">Edit</span><span class="btn btn-danger">Delete</span></td>
+        <td>{{$user->getRole()}}</td>
+        <td><a class="btn btn-primary" href="{{route('admin.users.view', ['user' => $user])}}">@can('edit user') Edit @else View @endcan</a> @can('delete user')<span class="btn btn-danger">Delete</span>@endcan</td>
       </tr>
     @endforeach
                 
