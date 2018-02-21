@@ -210,6 +210,82 @@ color: #fff;
         <li class="header">MAIN NAVIGATION</li>
         <li class="@if(\Request::is('admin/dashboard')) active @endif"><a href="{{Route('admin.dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashbodard</span></a></li>
 
+        @if(\Auth::user()->can('list product') || \Auth::user()->can('create product'))
+                <li class="treeview @if(\Request::is('admin/products*')) active @endif">
+                  <a href="#">
+                    <i class="fa fa-folder-open"></i> <span>Products</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    @if(\Auth::user()->can('create product'))
+                    <li><a href=""><i class="fa fa-plus"></i> Create Products</a></li>
+                    @endif
+                    @if(\Auth::user()->can('list product'))
+                    <li><a href=""><i class="fa fa-list"></i> Manage Products</a></li>
+                    @endif
+                  </ul>
+                </li>
+        @endif
+
+        @if(\Auth::user()->can('list category') || \Auth::user()->can('create category'))
+                <li class="treeview @if(\Request::is('admin/categorys*')) active @endif">
+                  <a href="#">
+                    <i class="fa fa-th-large"></i> <span>Categorys</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    @if(\Auth::user()->can('create category'))
+                    <li><a href=""><i class="fa fa-plus"></i> Create Categorys</a></li>
+                    @endif
+                    @if(\Auth::user()->can('list category'))
+                    <li><a href=""><i class="fa fa-list"></i> Manage Categorys</a></li>
+                    @endif
+                  </ul>
+                </li>
+        @endif
+
+        @if(\Auth::user()->can('list coupons') || \Auth::user()->can('create coupons'))
+                <li class="treeview @if(\Request::is('admin/coupons*')) active @endif">
+                  <a href="#">
+                    <i class="fa fa-tags"></i> <span>Coupons</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    @if(\Auth::user()->can('create coupons'))
+                    <li><a href=""><i class="fa fa-plus"></i> Create Coupons</a></li>
+                    @endif
+                    @if(\Auth::user()->can('list coupons'))
+                    <li><a href=""><i class="fa fa-list"></i> Manage Coupons</a></li>
+                    @endif
+                  </ul>
+                </li>
+        @endif
+
+        @if(\Auth::user()->can('list orders') || \Auth::user()->can('create order'))
+                <li class="treeview @if(\Request::is('admin/orders*')) active @endif">
+                  <a href="#">
+                    <i class="fa fa-credit-card-alt"></i> <span>Orders</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    @if(\Auth::user()->can('create order'))
+                    <li><a href=""><i class="fa fa-plus"></i> Create Orders</a></li>
+                    @endif
+                    @if(\Auth::user()->can('list orders'))
+                    <li><a href=""><i class="fa fa-list"></i> Manage Orders</a></li>
+                    @endif
+                  </ul>
+                </li>
+        @endif
+
         @if(\Auth::user()->can('list servers') || \Auth::user()->can('create server'))
                 <li class="treeview @if(\Request::is('admin/servers*')) active @endif">
                   <a href="#">
