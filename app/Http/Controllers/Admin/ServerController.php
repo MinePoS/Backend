@@ -19,7 +19,8 @@ class ServerController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.serverIndex');
+        $servers = Server::paginate(15);
+        return view('admin.pages.server.index')->with(["servers"=>$servers]);
     }
 
     /**
@@ -29,7 +30,7 @@ class ServerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.server.new');
     }
 
     /**
@@ -40,7 +41,17 @@ class ServerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $enabled = false;
+        if(request("enabled") !== null){
+            $enabled = true;
+        }
+
+        $server = new Server;
+        $server->name = request("name");
+        $server->enabled = $enabled;
+        $server->api_key = sha1(\Hash::make(request("name")));
+        $server->save();
+        return redirect()->route('admin.servers');
     }
 
     /**

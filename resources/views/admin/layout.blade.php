@@ -17,7 +17,98 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/admin/dist/css/skins/_all-skins.min.css">
+
+
+  <meta name="application-name" content="MinePoS">
+  <meta name="author" content="AndrewAubury & PiggyPiglet">
+  <meta name="description" content="Self-Hosted Minecraft store">
+  <meta name="keywords" content="Minecraft, MinePoS, free, Open Source">
+
+  <meta property="og:url" content="{{url()->current()}}" />
+  <meta property="og:title" content="@yield('title') | {{ env('APP_NAME') }} Admin" />
+  <meta property="og:description" content="@yield('desc')" />
+  <meta property="og:image" content="{{url('/admin/logo.png')}}" />
 @yield('head')
+<style type="text/css">
+.content-wrapper {
+    min-height: 100%;
+    background-color: #1c1c1c;
+    z-index: 800;
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #ccc;
+}
+.main-footer {
+    background: #151515;
+    padding: 15px;
+    color: #bdbdbd;
+    border-top: 1px solid #151515;
+}
+.box {
+    position: relative;
+    border-radius: 3px;
+    background: #242424;
+    border-top: 3px solid #151515;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+.box-header{
+  color: #ddd;
+}
+.table-hover > tbody > tr:hover {
+
+    background-color: #1c1c1c;
+
+}
+.box-footer {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top: 1px solid #1d1d1d;
+    padding: 10px;
+    background-color: #1d1d1d;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: #555;
+    background-image: none;
+    border: 1px solid #555;
+    border-radius: 4px;
+  }
+  .select2-container--default .select2-selection--single {
+    background-color: #555;
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 4px;
+}
+.select2-dropdown {
+    background-color: #555;
+    color: #fff;
+    border: 1px solid #555;
+ }
+ .select2-container--default .select2-selection--single .select2-selection__rendered {
+color: #fff;
+  }
+  .select2-container--default .select2-search--dropdown .select2-search__field{
+        color: #fff;
+    background-color: #555;
+    background-image: none;
+    border: 1px solid #555;
+  }
+</style>
+
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -149,7 +240,7 @@
                   
                   <ul class="treeview-menu">
                     @if(\Auth::user()->can('create user'))
-                    <li><a href="{{Route('admin.users')}}"><i class="fa fa-plus"></i> Create User</a></li>
+                    <li><a href="{{Route('admin.users.new')}}"><i class="fa fa-plus"></i> Create User</a></li>
                     @endif
                     @if(\Auth::user()->can('list users'))
                     <li><a href="{{Route('admin.users')}}"><i class="fa fa-list"></i> Manage Users</a></li>

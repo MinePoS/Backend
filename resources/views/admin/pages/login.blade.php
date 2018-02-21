@@ -16,6 +16,16 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="/admin/plugins/iCheck/square/blue.css">
 
+  <meta name="application-name" content="MinePoS">
+  <meta name="author" content="AndrewAubury & PiggyPiglet">
+  <meta name="description" content="Self-Hosted Minecraft store">
+  <meta name="keywords" content="Minecraft, MinePoS, free, Open Source">
+
+
+  <meta property="og:url" content="{{url()->current()}}" />
+  <meta property="og:title" content="MinePoS Admin" />
+  <meta property="og:description" content="Login to access the administration panel of {{ env('APP_NAME') }}" />
+  <meta property="og:image" content="{{url('/admin/logo.png')}}" />
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -25,10 +35,25 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  <style type="text/css">
+  .center {
+    margin: auto;
+    width: 50%;
+}
+
+.login-logo a, .register-logo a {
+    color: #ccc;
+}
+.login-page, .register-page {
+    background: #1c1c1c;
+}
+</style>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
+    <div class="center"><img height="64" src="{{url('/admin/logo.png')}}"></div>
     <a href="#">{{ env('APP_NAME') }} Admin Panel
   </div>
   <!-- /.login-logo -->

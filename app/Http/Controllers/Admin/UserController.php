@@ -39,7 +39,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User;
+        
+        $user->name = request("name");
+        $user->email = request("email");
+        $user->password = \Hash::make(request("password"));
+        $user->save();
+        $user->syncRoles(request("role"));
+        
+        return redirect()->route('admin.users');
     }
 
     /**
@@ -73,7 +81,14 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $user->name = request("name");
+        $user->email = request("email");
+
+        if(\Auth::user()->can("change user role")){
+            $user->syncRoles(request("role"));
+        }
+        $user->save();
+        return redirect()->route('admin.users');
     }
 
     /**

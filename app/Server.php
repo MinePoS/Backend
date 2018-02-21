@@ -7,4 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Server extends Model
 {
     //
+    protected $dates = [
+        'last_used',
+    ];
 }

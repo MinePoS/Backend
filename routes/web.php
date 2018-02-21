@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('api','APIController@checkConnection');
+
 if(Request::is('admin/*') || Request::is('admin/') || Request::is('admin'))
 {
     	require(__DIR__.'/admin/web.php');

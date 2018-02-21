@@ -22,10 +22,12 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('403','Admin\ErrorController@forbiddenResponse')->name('admin.errors.403');
 
 	Route::get('servers','Admin\ServerController@index')->middleware('permission:list servers')->name('admin.servers');
-	Route::get('servers/new','Admin\ServerController@index')->middleware('permission:create server')->name('admin.server.new');
+	Route::get('servers/new','Admin\ServerController@create')->middleware('permission:create server')->name('admin.server.new');
+	Route::post('servers/new','Admin\ServerController@store')->middleware('permission:create server');
 
 	Route::get('users','Admin\UserController@index')->middleware('permission:list users')->name('admin.users');
-	Route::get('users/new','Admin\UserController@create')->middleware('permission:list users')->name('admin.users.new');
+	Route::get('users/new','Admin\UserController@create')->middleware('permission:create user')->name('admin.users.new');
+	Route::post('users/new','Admin\UserController@store')->middleware('permission:create user')->name('admin.users.new');
 	Route::get('users/{user}','Admin\UserController@edit')->middleware('permission:view users')->name('admin.users.view');
 	Route::post('users/{user}','Admin\UserController@update')->middleware('permission:edit user')->name('admin.users.edit');
 

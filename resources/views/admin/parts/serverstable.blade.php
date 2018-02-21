@@ -2,14 +2,14 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Responsive Hover Table</h3>
+              <h3 class="box-title">Servers</h3>
 
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
-                  <input name="table_search" class="form-control pull-right" placeholder="Search" type="text">
+                  <!-- <input name="table_search" class="form-control pull-right" placeholder="Search" type="text"> -->
 
                   <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    <!-- <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button> -->
                   </div>
                 </div>
               </div>
@@ -19,40 +19,21 @@
               <table class="table table-hover">
                 <tbody><tr>
                   <th>ID</th>
-                  <th>User</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                  <th>Reason</th>
+                  <th>Name</th>
+                  <th>Active</th>
+                  <th>Last API Call</th>
                 </tr>
+                @foreach($servers as $server)
                 <tr>
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                  <td>{{$server->id}}</td>
+                  <td>{{$server->name}}</td>
+                    <?php if($server->enabled == true){ $status="success"; }else{ $status="danger"; }?>
+                  <td><span class="label label-{{$status}}">@if($server->enabled == true) Enabled @else Disabled @endif</span></td>
+                  <td>@if($server->last_used != null) {{$server->last_used->diffForHumans()}} @else Never used @endif</td>
                 </tr>
-                <tr>
-                  <td>219</td>
-                  <td>Alexander Pierce</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-warning">Pending</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>657</td>
-                  <td>Bob Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-primary">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>175</td>
-                  <td>Mike Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-danger">Denied</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
+                @endforeach
               </tbody></table>
+              {{$servers->links()}}
             </div>
             <!-- /.box-body -->
           </div>

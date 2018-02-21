@@ -6,7 +6,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{route('admin.users.view', ['user' => $user])}}" method="POST">
+            <form role="form" action="{{route('admin.users.edit', ['user' => $user])}}" method="POST">
             	{{csrf_field()}}
               <div class="box-body">
                 <div class="form-group">
@@ -19,18 +19,17 @@
                   <input @can('edit user') @else disabled @endcan class="form-control" name="email" id="email" value="{{$user->email}}" placeholder="Name" required>
                 </div>
 
-
-                <div class="form-">
+                @can('change user role')
+                <div class="form-group">
                 	<label for="role">Role</label>
                 	<br>
                 	<select class="roleSelector" id="role" name="role">
-					  @foreach(\Spatie\Permission\Models\Role::all() as $role)
-					  <option value="{{$role->name}}" selected>{{$role->name}}</option>
-					  @endforeach
-					   
-					</select>
+        					     @foreach(\Spatie\Permission\Models\Role::all() as $role)
+        					         <option value="{{$role->name}}" @if($user->getRole() == $role->name) selected="true" @endif>{{$role->name}}</option>
+                       @endforeach
+					         </select>
                 </div>
-
+                @endcan
               </div>
               <!-- /.box-body -->
 
