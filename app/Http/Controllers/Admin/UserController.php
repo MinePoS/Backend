@@ -69,6 +69,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+                if($user->email == \Auth::user()->email){
+            return redirect()->back(); 
+        }
             return view('admin.pages.user.edit')->with(['user'=>$user]);
     }
 
@@ -81,6 +84,9 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        if($user->email == \Auth::user()->email){
+            return redirect()->back(); 
+        }
         $user->name = request("name");
         $user->email = request("email");
 
@@ -99,6 +105,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        if($user->email != \Auth::user()->email){
+            $user->delete();
+        }
+        return redirect()->back(); 
     }
 }

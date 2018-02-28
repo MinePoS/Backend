@@ -1,7 +1,10 @@
 <?php
-Route::get('/admin', 'Admin\Dashboard@showDashboard');
 
-Route::group(['prefix' => 'admin'], function () {
+$adminPrefix = Setting::get('admin.url', 'admin');
+
+Route::get('/'.$adminPrefix, 'Admin\Dashboard@showDashboard');
+
+Route::group(['prefix' => $adminPrefix], function () {
 	// Registration Routes...
 	Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 	Route::post('register', 'Auth\RegisterController@register');
@@ -30,15 +33,26 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::post('users/new','Admin\UserController@store')->middleware('permission:create user')->name('admin.users.new');
 	Route::get('users/{user}','Admin\UserController@edit')->middleware('permission:view users')->name('admin.users.view');
 	Route::post('users/{user}','Admin\UserController@update')->middleware('permission:edit user')->name('admin.users.edit');
+	Route::get('users/{user}/delete','Admin\UserController@destroy')->middleware('permission:delete user')->name('admin.users.delete');
 
 	Route::get('roles','Admin\RoleController@index')->middleware('permission:view roles')->name('admin.roles');
-
 	Route::get('roles/new','Admin\RoleController@create')->middleware('permission:create new role')->name('admin.roles.new');
 	Route::post('roles/new','Admin\RoleController@store')->middleware('permission:create new role');
-
 	Route::get('roles/{role}/delete','Admin\RoleController@destroy')->middleware('permission:delete roles')->name('admin.roles.delete');
-
 	Route::get('roles/{role}','Admin\RoleController@show')->middleware('permission:view roles')->name('admin.roles.view');
 	Route::post('roles/{role}','Admin\RoleController@update')->middleware('permission:edit roles');
 
+	Route::get('catagories','Admin\CategoryController@index')->middleware('permission:list category')->name('admin.Categories');
+	
+	Route::get('catagories/new','Admin\CategoryController@create')->middleware('permission:create category')->name('admin.Categories.new');
+	Route::post('catagories/new','Admin\CategoryController@store')->middleware('permission:create category');
+	Route::get('catagories/{category}/delete','Admin\CategoryController@destroy')->middleware('permission:delete category')->name('admin.Categories.delete');
+	Route::get('catagories/{category}','Admin\CategoryController@show')->middleware('permission:view category')->name('admin.Categories.view');
+	Route::post('catagories/{category}','Admin\CategoryController@update')->middleware('permission:edit category');
+
+	Route::get('settings','Admin\SettingsController@index')->middleware('permission:edit settings')->name("admin.settings");
+	Route::get('settings/theme','Admin\Settings\ThemeController@index')->middleware('permission:edit settings')->name("admin.settings.theme");
+	Route::get('settings/theme/set/{themeName}','Admin\Settings\ThemeController@set')->middleware('permission:edit settings')->name("admin.settings.theme.set");
+	Route::get('settings/theme/upload','Admin\Settings\ThemeController@uploadform')->middleware('permission:edit settings')->name("admin.settings.theme.upload");
+	Route::POST('settings/theme/upload','Admin\Settings\ThemeController@upload')->middleware('permission:edit settings')->name("admin.settings.theme.upload");
 });

@@ -148,7 +148,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Creativeorange\Gravatar\GravatarServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-
+        Igaster\LaravelTheme\themeServiceProvider::class,
+        anlutro\LaravelSettings\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -211,6 +212,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
+        'Store' => App\Helpers\Store::class,
+        'Theme' => Igaster\LaravelTheme\Facades\Theme::class,
+        'Setting' => anlutro\LaravelSettings\Facade::class
     ],
 
 ];

@@ -33,6 +33,7 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
+            @if(Store::isLoggedIn())
             <li class="nav-item">
               <a class="nav-link" href="#">About</a>
             </li>
@@ -40,8 +41,9 @@
               <a class="nav-link" href="#">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              {!! Store::getHead('32') !!} <a class="nav-link" href="{{route('store.logout')}}">Logout ({{Store::username()}})</a>
             </li>
+            @endif
           </ul>
         </div>
       </div>
@@ -51,7 +53,7 @@
     <div class="container">
 
       <div class="row">
-
+        @if(Store::isLoggedIn())
         <div class="col-lg-3">
 
           <h1 class="my-4">{{env("APP_NAME","MinePoS")}}</h1>
@@ -62,10 +64,14 @@
           </div>
 
         </div>
+
         <!-- /.col-lg-3 -->
 @yield('content')
         <!-- /.col-lg-9 -->
+        @else
 
+        @include("parts.login")
+@endif
       </div>
       <!-- /.row -->
 

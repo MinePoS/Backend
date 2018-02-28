@@ -8,6 +8,10 @@ use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::paginate(15);
+        return view('admin.pages.category.index')->with(["categories"=>$categories]);
     }
 
     /**

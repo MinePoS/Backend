@@ -21,13 +21,15 @@
                   <th>Actions</th>
                 </tr>
     @foreach ($users as $user)
+    
         <tr>
         <td>{{$user->id}}</td>
         <td>{{$user->name}}</td>
         <td>{{$user->email}}</td>
         <td>{{$user->getRole()}}</td>
-        <td><a class="btn btn-primary" href="{{route('admin.users.view', ['user' => $user])}}">@can('edit user') Edit @else View @endcan</a> @can('delete user')<span class="btn btn-danger">Delete</span>@endcan</td>
+        <td>@if($user->email == \Auth::user()->email)@else<a class="btn btn-primary" href="{{route('admin.users.view', ['user' => $user])}}">@can('edit user') Edit @else View @endcan</a> @can('delete user')<a class="btn btn-danger" href="{{route('admin.users.delete', ['user' => $user])}}">Delete</a>@endcan @endif</td>
       </tr>
+   
     @endforeach
                 
               </tbody></table>
