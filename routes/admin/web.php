@@ -22,11 +22,20 @@ Route::group(['prefix' => $adminPrefix], function () {
 	Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 	Route::get('dashboard', 'Admin\Dashboard@showDashboard')->name('admin.dashboard');
+
+	Route::post('DieAndDump', 'Admin\Dashboard@dd')->name('admin.dd');
+	
 	Route::get('403','Admin\ErrorController@forbiddenResponse')->name('admin.errors.403');
 
 	Route::get('servers','Admin\ServerController@index')->middleware('permission:list servers')->name('admin.servers');
 	Route::get('servers/new','Admin\ServerController@create')->middleware('permission:create server')->name('admin.server.new');
 	Route::post('servers/new','Admin\ServerController@store')->middleware('permission:create server');
+	
+	Route::get('servers/{server}','Admin\ServerController@edit')->middleware('permission:view server')->name('admin.server.edit');
+	Route::post('servers/{server}','Admin\ServerController@update')->middleware('permission:view server');
+	
+	Route::get('servers/{server}/delete','Admin\ServerController@delete')->middleware('permission:delete server')->name('admin.server.delete');
+	Route::delete('servers/{server}/delete','Admin\ServerController@destroy')->middleware('permission:delete server')->name('admin.server.delete');
 
 	Route::get('users','Admin\UserController@index')->middleware('permission:list users')->name('admin.users');
 	Route::get('users/new','Admin\UserController@create')->middleware('permission:create user')->name('admin.users.new');
@@ -51,6 +60,17 @@ Route::group(['prefix' => $adminPrefix], function () {
 	Route::post('catagories/{category}','Admin\CategoryController@update')->middleware('permission:edit category');
 
 	Route::get('settings','Admin\SettingsController@index')->middleware('permission:edit settings')->name("admin.settings");
+	
+	Route::get('settings/payments','Admin\SettingsController@paymentsIndex')->middleware('permission:edit settings')->name("admin.settings.payments");
+
+	Route::post('settings/payments','Admin\SettingsController@paymentsSave')->middleware('permission:edit settings')->name("admin.settings.payments.save");
+	
+	Route::get('settings/pterodactyl','Admin\SettingsController@showPterodactyl')->middleware('permission:edit settings')->name("admin.settings.pterodactyl");
+	Route::post('settings/pterodactyl','Admin\SettingsController@savePterodactyl')->middleware('permission:edit settings')->name("admin.settings.pterodactyl");
+
+	Route::post('settings/pterodactyl/setup','Admin\SettingsController@magicPterodactyl')->middleware('permission:edit settings')->name("admin.settings.pterodactyl.setup");
+
+	Route::post('settings/update','Admin\SettingsController@save')->middleware('permission:edit settings')->name("admin.settings.save");
 	Route::get('settings/theme','Admin\Settings\ThemeController@index')->middleware('permission:edit settings')->name("admin.settings.theme");
 	Route::get('settings/theme/set/{themeName}','Admin\Settings\ThemeController@set')->middleware('permission:edit settings')->name("admin.settings.theme.set");
 	Route::get('settings/theme/upload','Admin\Settings\ThemeController@uploadform')->middleware('permission:edit settings')->name("admin.settings.theme.upload");

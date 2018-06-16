@@ -16,4 +16,9 @@ class Dashboard extends Controller
     {
         return view('admin.pages.dashboard');
     }
+
+    public function dd(){
+    	$json_string = json_encode(Request("commands"), JSON_PRETTY_PRINT);
+    	die($json_string);
+    }
 }

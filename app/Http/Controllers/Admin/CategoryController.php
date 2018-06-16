@@ -30,7 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.category.new');
     }
 
     /**
@@ -41,7 +41,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    $category = new \App\Category;
+    $category->name = request("name");
+    $category->desc = request("desc");
+    $category->short_desc = request("short_desc");
+    $category->visible = (request("visible") != null);
+    $category->featured = (request("featured") != null);
+    $category->parent_id = request("parent");
+
+    $category->save();
+    session()->flash('good', 'Category created');
+    return redirect()->route('admin.Categories');
     }
 
     /**

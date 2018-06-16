@@ -21,6 +21,7 @@
   <meta name="description" content="Self-Hosted Minecraft store">
   <meta name="keywords" content="Minecraft, MinePoS, free, Open Source">
 
+  <meta name="theme-color" content="#A32A2A">
 
   <meta property="og:url" content="{{url()->current()}}" />
   <meta property="og:title" content="MinePoS Admin" />

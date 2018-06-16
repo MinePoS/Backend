@@ -18,8 +18,6 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->string('desc');
             $table->string('short_desc');
-            $table->string('material')->default("GRASS");
-            $table->string('data')->default("0");
             $table->boolean('visible')->default(true);
             $table->boolean('featured')->default(false);
             $table->timestamps();

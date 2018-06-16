@@ -150,6 +150,8 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Igaster\LaravelTheme\themeServiceProvider::class,
         anlutro\LaravelSettings\ServiceProvider::class,
+        Andrew\PaypalIPN\PaypalIPNServiceProvider::class,
+        Fedeisas\LaravelMailCssInliner\LaravelMailCssInlinerServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -162,7 +164,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        
     ],
 
     /*

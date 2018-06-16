@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class HomeController extends Controller
 {
@@ -37,4 +38,9 @@ class HomeController extends Controller
     	session()->forget('username');
     	return redirect()->back();
     }
+
+    public function showCategory(Category $category){
+        return view('category')->with(['category'=>$category]);
+    }
+
 }

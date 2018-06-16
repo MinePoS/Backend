@@ -20,7 +20,7 @@
         @endif
 
         @if(\Auth::user()->can('list category') || \Auth::user()->can('create category'))
-                <li class="treeview @if(\Request::is('admin/categories*')) active @endif">
+                <li class="treeview @if(\Request::is('admin/catagories*')) active @endif">
                   <a href="#">
                     <i class="fa fa-th-large"></i> <span>Categories</span>
                     <span class="pull-right-container">

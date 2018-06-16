@@ -50,6 +50,8 @@ class ServerController extends Controller
         $server->name = request("name");
         $server->enabled = $enabled;
         $server->api_key = sha1(\Hash::make(request("name")));
+        $server->type = request("srvType");
+        $server->ptero_id = request("srvID");
         $server->save();
         return redirect()->route('admin.servers');
     }
@@ -73,7 +75,7 @@ class ServerController extends Controller
      */
     public function edit(Server $server)
     {
-        //
+        return view('admin.pages.server.edit')->with(['server'=>$server]);
     }
 
     /**
@@ -85,7 +87,20 @@ class ServerController extends Controller
      */
     public function update(Request $request, Server $server)
     {
-        //
+        $enabled = false;
+        if(request("enabled") !== null){
+            $enabled = true;
+        }
+
+        $server->name = request("name");
+        $server->enabled = $enabled;
+        $server->api_key = sha1(\Hash::make(request("name")));
+        $server->type = request("srvType");
+        $server->ptero_id = request("srvID");
+        $server->save();
+        
+        session()->flash('good', 'Server updated');
+        return redirect()->back();
     }
 
     /**
@@ -94,8 +109,15 @@ class ServerController extends Controller
      * @param  \App\Server  $server
      * @return \Illuminate\Http\Response
      */
+    public function delete(Server $server)
+    {
+        return view('admin.pages.server.delete')->with(['server'=>$server]);
+    }
+    
     public function destroy(Server $server)
     {
-        //
+        $server->delete();
+        session()->flash('good', 'Server deleted');
+        return redirect()->route('admin.servers');
     }
 }

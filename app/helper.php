@@ -14,6 +14,18 @@ class Store
 	public static function getHead($size){
 		return "<img src=\"https://visage.surgeplay.com/head/".$size."/".Request()->session()->get('uuid')."\" size=\"".$size."\" align=\"left\" >";
 	}
+
+	public static function homeTitle(){
+		return \Setting::get("home_title","Home");
+	}
+	public static function homeDesc(){
+		return \Setting::get("home_desc","default home thing");
+	}
+	public static function showContent(){
+		$loggedin = \Store::isLoggedIn();
+		$isRoot = \Request::is('/');
+		return($loggedin || $isRoot);
+	}
 }
 
 ?>

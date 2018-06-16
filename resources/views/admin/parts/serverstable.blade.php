@@ -22,6 +22,7 @@
                   <th>Name</th>
                   <th>Active</th>
                   <th>Last API Call</th>
+                  <th>Actions</th>
                 </tr>
                 @foreach($servers as $server)
                 <tr>
@@ -30,6 +31,7 @@
                     <?php if($server->enabled == true){ $status="success"; }else{ $status="danger"; }?>
                   <td><span class="label label-{{$status}}">@if($server->enabled == true) Enabled @else Disabled @endif</span></td>
                   <td>@if($server->last_used != null) {{$server->last_used->diffForHumans()}} @else Never used @endif</td>
+                  <td><a class="btn btn-primary" href="{{route('admin.server.edit',['server'=>$server])}}">Edit</a> <a href="{{route('admin.server.delete',['server'=>$server])}}" class="btn btn-danger">Delete</a></td>
                 </tr>
                 @endforeach
               </tbody></table>

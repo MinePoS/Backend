@@ -30,12 +30,20 @@ Guys its happening! A new server!
                 	<label for="enabled">Enabled</label>
 			       
 			          <div class="checkbox icheck">
-                  		
-			              <input type="checkbox" id="Enabled" name="enabled"> 
-			            </label>
-			         
+        
+			              <input type="checkbox" id="Enabled" name="enabled"> 			         
 			        </div>
                 </div>
+
+                    <div class="form-group">
+                      <label for="srvType">Type</label><br>
+                        <input type="radio" class="srvSel" name="srvType" value="plugin"> Plugin<br>
+                        <input type="radio" class="srvSel" name="srvType" value="pterodactyl" checked=""> Pterodactyl Panel<br>
+                    </div>
+                    <div class="form-group" id="pterodactyl-settings">
+                       <label for="srvID">Pterodactyl Server ID</label><br>
+                        <input type="text" class="form-control" name="srvID" id="srvID"><br>
+                    </div>
               </div>
               <!-- /.box-body -->
 
@@ -56,11 +64,21 @@ Guys its happening! A new server!
 	<script src="/admin/plugins/iCheck/icheck.min.js"></script>
 <script>
   $(function () {
+    $('.srvSel').on('ifChecked', function(event){
+      if(event.target.value == "pterodactyl"){
+        $("#pterodactyl-settings").show();
+      }else{
+        $("#pterodactyl-settings").hide();
+      }
+    });
+
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' /* optional */
     });
   });
+
+
 </script>
 @endsection
