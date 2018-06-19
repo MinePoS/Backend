@@ -20,6 +20,7 @@ Route::get('logout','HomeController@logout')->name("store.logout");
 
 Route::get('/', 'HomeController@index')->name("store.index");
 Route::get('/category/{category}', 'HomeController@showCategory')->name("store.category");
+Route::post('/payment-complete', 'HomeController@paymentDone')->name("store.paymentdone");
 
 Route::get('paypal/','PayPalTestController@index')->name('paypal');
 Route::get('paypal/ipn','PayPalTestController@paypalIpn')->name('paypal.ipn');

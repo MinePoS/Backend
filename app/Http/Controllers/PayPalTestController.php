@@ -26,7 +26,7 @@ class PayPalTestController extends Controller
     	}
 
     	$order = new Order;
-    	$commands = "{ \"4\": [ \"bc %player% has just donated!\",\"give %player% diamond\" ] }";
+    	$commands = "{ \"13\": [ \"bc %player% has just donated!\",\"give %player% diamond\",\"spawn %player%\" ] }";
 		$commands = str_replace("%player%", \Store::username(), $commands);
 
 		$order->username = \Store::username();
@@ -59,11 +59,12 @@ public function paypalIpn()
 
     if ($verified) {
             Log::info("Payment verified agenst payapl and inserted to orders table to the database.");
-            
-             $order = \App\Order::find($_POST['item_name']);
+            $ids = explode('|', $ipn->getPostData()['custom']);
+
+             $order = \App\Order::find($ids[0]);
              $order->txid = $ipn->getPostData()['txn_id'];
              $order->gateway = "paypal";
-
+            
              if($ipn->getPostData()['payment_status'] == "Completed"){
              $order->status = "payment_received";
              $commands = json_decode($order->commands,true);

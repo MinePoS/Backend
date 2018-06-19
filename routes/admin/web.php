@@ -59,6 +59,9 @@ Route::group(['prefix' => $adminPrefix], function () {
 	Route::get('catagories/{category}','Admin\CategoryController@show')->middleware('permission:view category')->name('admin.Categories.view');
 	Route::post('catagories/{category}','Admin\CategoryController@update')->middleware('permission:edit category');
 
+	Route::get('orders','Admin\OrderController@index')->middleware('permission:list order')->name('admin.order');
+
+
 	Route::get('settings','Admin\SettingsController@index')->middleware('permission:edit settings')->name("admin.settings");
 	
 	Route::get('settings/payments','Admin\SettingsController@paymentsIndex')->middleware('permission:edit settings')->name("admin.settings.payments");

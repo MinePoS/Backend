@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>@if(Store::isLoggedIn()) @yield('title') @else Login @endif- {{ config('app.name', 'MinePoS') }}</title>
+  <title>@if(Store::isLoggedIn() || Route::currentRouteName() == "store.index") @yield('title') @else Login @endif- {{ config('app.name', 'MinePoS') }}</title>
   <link rel="icon" type="image/png" href="{{theme_url('includes/img/favicon.png')}}">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -15,10 +15,15 @@
       <div class="col-sm-12 col-md-6">
         <img src="{{theme_url('includes/img/favicon.png')}}" class="logo">
       </div>
-      <div class="col-sm-12 col-md-6">
+
+     @if(Store::isLoggedIn()) <div class="col-sm-2 col-md-1">
+ <a href="#" class="btn btn-dark top-btn float-md-left btn-danger" style="padding: 5px; padding-right: 40px;">{!! Store::getHead('32') !!}{{Store::username()}}</a>
+      </div>@endif
+      <div class="col-sm-10 col-md-5">
+        
         <a href="#" class="btn btn-dark top-btn float-md-right">Cart</a>
         <a href="#" class="btn btn-dark top-btn float-md-right">USD</a>
-        @if(Store::isLoggedIn())<a href="{{route('store.logout')}}" class="btn btn-dark top-btn float-md-right btn-danger" style="background-color: #dc3545;border-color: #dc3545;">Logout</a>@endif
+        @if(Store::isLoggedIn()) <a href="{{route('store.logout')}}" class="btn btn-dark top-btn float-md-right btn-danger" style="background-color: #dc3545;border-color: #dc3545;">Logout</a>@endif
 	  </div>
     </div>
     <div class="row">

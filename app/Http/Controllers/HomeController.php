@@ -42,5 +42,20 @@ class HomeController extends Controller
     public function showCategory(Category $category){
         return view('category')->with(['category'=>$category]);
     }
-
+    public function paymentDone(){
+        $item_name = $_POST['item_name'];
+        $item_number = $_POST['item_number'];
+        $payment_status = $_POST['payment_status'];
+        $payment_amount = $_POST['mc_gross'];
+        $payment_currency = $_POST['mc_currency'];
+        $txn_id = $_POST['txn_id'];
+        $receiver_email = $_POST['receiver_email'];
+        $payer_email = $_POST['payer_email'];
+        $order = \App\Order::find($item_number);
+        if($order == null){
+            abort(404);
+            return;
+        }
+         return view('paymentDone')->with(compact("item_name", "item_number", "payment_status","payment_amount","payment_currency","txn_id","receiver_email","payer_email","order"));
+        }
 }
