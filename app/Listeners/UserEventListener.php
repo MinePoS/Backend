@@ -6,7 +6,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use \DiscordWebhooks\Client;
 use \DiscordWebhooks\Embed;
-
+use \Setting;
 class UserEventListener
 {
     /**
@@ -37,12 +37,12 @@ class UserEventListener
 
     public function onUserLogin($event)
     {
-        if(env('DISCORD_LOGIN_ENABLED', false)){
+        if(Setting::get('DISCORD_LOGIN_ENABLED', false)){
                     $ip = \Request::ip();
         if(env('APP_DEBUG', false)){
             $ip = preg_replace('/[0-9]+/', '*', $ip);
         }
-            $webhook = env('DISCORD_LOGIN_WEBHOOK');
+            $webhook = Setting::get('DISCORD_LOGIN_WEBHOOK');
 
             $webhook = new Client($webhook);
             $embed = new Embed();

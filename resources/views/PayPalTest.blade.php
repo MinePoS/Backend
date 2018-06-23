@@ -7,7 +7,6 @@
     <input type="hidden" name="business" value="{{\Setting::get('paypal_email')}}" />
     <input type="hidden" name="notify_url" value="{{route('paypal.ipn')}}" />
     <input type="hidden" name="cancel_return" value="{{route('store.index')}}" />
-    <input type="hidden" name="rm" value="2" />
     <input type="hidden" name="return" value="{{route('store.paymentdone')}}" />
     <input type="hidden" name="no_note" value="1" />
     <input type="hidden" name="custom" value="{{$order->id}}|{{$order->username}}"/>

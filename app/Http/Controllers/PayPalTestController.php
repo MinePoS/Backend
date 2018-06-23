@@ -26,7 +26,8 @@ class PayPalTestController extends Controller
     	}
 
     	$order = new Order;
-    	$commands = "{ \"13\": [ \"bc %player% has just donated!\",\"give %player% diamond\",\"spawn %player%\" ] }";
+        $sid = \App\Server::all()[0]->id;
+    	$commands = "{ \"".$sid."\": [ \"bc %player% has just donated!\",\"give %player% diamond\"] }";
 		$commands = str_replace("%player%", \Store::username(), $commands);
 
 		$order->username = \Store::username();
@@ -61,7 +62,7 @@ public function paypalIpn()
             Log::info("Payment verified agenst payapl and inserted to orders table to the database.");
             $ids = explode('|', $ipn->getPostData()['custom']);
 
-             $order = \App\Order::find($ids[0]);
+             $order = \App\Order::find($ipn->getPostData()['item_number']);
              $order->txid = $ipn->getPostData()['txn_id'];
              $order->gateway = "paypal";
             

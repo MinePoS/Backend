@@ -5,3 +5,6 @@
 <li class="@if(\Request::is('admin/settings/pterodactyl*')) active @endif"><a href="{{Route('admin.settings.pterodactyl')}}"><i class="fa fa-gamepad "></i> <span>Pterodactyl</span></a></li>
 
 <li class="@if(\Request::is('admin/settings/payments*')) active @endif"><a href="{{Route('admin.settings.payments')}}"><i class="fa fa-paypal "></i> <span>Payments</span></a></li>
+
+<li class="@if(\Request::is('admin/settings/discord*')) active @endif"><a href="{{Route('admin.settings.discord')}}"><i class="fa fa-question" aria-hidden="true"></i>
+</i> <span>Discord</span></a></li>

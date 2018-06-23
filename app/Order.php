@@ -15,8 +15,8 @@ class Order extends Model
 
     public function orderNotification()
     {
-        if(env('DISCORD_ORDER_ENABLED', false)){
-            $webhook = env('DISCORD_ORDER_WEBHOOK');
+        if(\Setting::get('DISCORD_ORDER_ENABLED', false)){
+            $webhook = \Setting::get('DISCORD_ORDER_WEBHOOK');
 
             $webhook = new Client($webhook);
             $embed = new Embed();
@@ -25,7 +25,7 @@ class Order extends Model
             $webhook->embed($embed)->send();
         }
 
-        \Mail::to($this->lastIPN()['payer_email'])->send(new \App\Mail\OrderProcessed($this));
+        //\Mail::to($this->lastIPN()['payer_email'])->send(new \App\Mail\OrderProcessed($this));
     }
     public static function paymentsDays($days)
     {

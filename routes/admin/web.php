@@ -71,6 +71,10 @@ Route::group(['prefix' => $adminPrefix], function () {
 	Route::get('settings/pterodactyl','Admin\SettingsController@showPterodactyl')->middleware('permission:edit settings')->name("admin.settings.pterodactyl");
 	Route::post('settings/pterodactyl','Admin\SettingsController@savePterodactyl')->middleware('permission:edit settings')->name("admin.settings.pterodactyl");
 
+	Route::get('settings/discord','Admin\SettingsController@showDiscord')->middleware('permission:edit settings')->name("admin.settings.discord");
+	Route::post('settings/discord','Admin\SettingsController@saveDiscord')->middleware('permission:edit settings')->name("admin.settings.discord");
+	Route::post('settings/discord','Admin\SettingsController@testDiscord')->middleware('permission:edit settings')->name("admin.settings.discord.test");
+
 	Route::post('settings/pterodactyl/setup','Admin\SettingsController@magicPterodactyl')->middleware('permission:edit settings')->name("admin.settings.pterodactyl.setup");
 
 	Route::post('settings/update','Admin\SettingsController@save')->middleware('permission:edit settings')->name("admin.settings.save");

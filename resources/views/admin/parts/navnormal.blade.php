@@ -57,7 +57,7 @@
                 </li>
         @endif
 
-        @if(\Auth::user()->can('list orders') || \Auth::user()->can('create order'))
+        @if(\Auth::user()->can('list order') || \Auth::user()->can('create order'))
                 <li class="treeview @if(\Request::is('admin/orders*')) active @endif">
                   <a href="#">
                     <i class="fa fa-credit-card-alt"></i> <span>Orders</span>
@@ -69,8 +69,8 @@
                     @if(\Auth::user()->can('create order'))
                     <li><a href=""><i class="fa fa-plus"></i> Create Orders</a></li>
                     @endif
-                    @if(\Auth::user()->can('list orders'))
-                    <li><a href=""><i class="fa fa-list"></i> Manage Orders</a></li>
+                    @if(\Auth::user()->can('list order'))
+                    <li><a href="{{Route('admin.order')}}"><i class="fa fa-list"></i> Manage Orders</a></li>
                     @endif
                   </ul>
                 </li>
