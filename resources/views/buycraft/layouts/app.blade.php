@@ -16,14 +16,11 @@
         <img src="{{theme_url('includes/img/favicon.png')}}" class="logo">
       </div>
 
-     @if(Store::isLoggedIn()) <div class="col-sm-2 col-md-1">
- <a href="#" class="btn btn-dark top-btn float-md-left btn-danger" style="padding: 5px; padding-right: 40px;">{!! Store::getHead('32') !!}{{Store::username()}}</a>
-      </div>@endif
-      <div class="col-sm-10 col-md-5">
+      <div class="col-sm-10 col-md-6">
         
         <a href="#" class="btn btn-dark top-btn float-md-right">Cart</a>
         <a href="#" class="btn btn-dark top-btn float-md-right">USD</a>
-        @if(Store::isLoggedIn()) <a href="{{route('store.logout')}}" class="btn btn-dark top-btn float-md-right btn-danger" style="background-color: #dc3545;border-color: #dc3545;">Logout</a>@endif
+        @if(Store::isLoggedIn()) <a href="{{route('store.logout')}}" class="btn btn-dark top-btn float-md-right btn-danger" style="background-color: #dc3545;border-color: #dc3545;">Logout ({{Store::username()}})</a>@endif
 	  </div>
     </div>
     <div class="row">

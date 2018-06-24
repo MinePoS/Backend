@@ -27,6 +27,8 @@ Route::group(['prefix' => $adminPrefix], function () {
 	
 	Route::get('403','Admin\ErrorController@forbiddenResponse')->name('admin.errors.403');
 
+	Route::get('products','Admin\ProductController@index')->middleware('permission:list product')->name('admin.products');
+	
 	Route::get('servers','Admin\ServerController@index')->middleware('permission:list servers')->name('admin.servers');
 	Route::get('servers/new','Admin\ServerController@create')->middleware('permission:create server')->name('admin.server.new');
 	Route::post('servers/new','Admin\ServerController@store')->middleware('permission:create server');
@@ -55,7 +57,10 @@ Route::group(['prefix' => $adminPrefix], function () {
 	
 	Route::get('catagories/new','Admin\CategoryController@create')->middleware('permission:create category')->name('admin.Categories.new');
 	Route::post('catagories/new','Admin\CategoryController@store')->middleware('permission:create category');
-	Route::get('catagories/{category}/delete','Admin\CategoryController@destroy')->middleware('permission:delete category')->name('admin.Categories.delete');
+	Route::get('catagories/{category}/delete','Admin\CategoryController@destroy')->name('admin.Categories.delete');
+	Route::get('catagories/{category}/edit','Admin\CategoryController@edit')->name('admin.Categories.edit');
+	Route::post('catagories/{category}/edit','Admin\CategoryController@update')->name('admin.Categories.edit');
+	
 	Route::get('catagories/{category}','Admin\CategoryController@show')->middleware('permission:view category')->name('admin.Categories.view');
 	Route::post('catagories/{category}','Admin\CategoryController@update')->middleware('permission:edit category');
 

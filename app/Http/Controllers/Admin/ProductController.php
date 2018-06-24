@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
         public function __construct()
     {
@@ -19,8 +20,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(15);
-        return view('admin.pages.category.index')->with(["categories"=>$categories]);
+        $products = Product::paginate(15);
+        return view('admin.pages.product.index')->with(["products"=>$products]);
     }
 
     /**

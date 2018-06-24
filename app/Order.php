@@ -9,6 +9,15 @@ use \DiscordWebhooks\Embed;
 
 class Order extends Model
 {
+    public function getHead(){
+        $json = file_get_contents("https://api.mojang.com/users/profiles/minecraft/".$this->username."?at=".strtotime($this->created_at));
+        $arr = json_decode($json, true);
+        if(isset($arr["error"])){
+            return "https://crafatar.com/renders/head/8667ba71-b85a-4004-af54-457a9734eed7";
+        }else{
+            return "https://crafatar.com/renders/head/".$arr["id"]."?overlay";
+        }
+    }
      public function lastIPN(){
     	return(json_decode($this->postdata,true));
     }
@@ -51,6 +60,11 @@ class Order extends Model
 
     public static function moneyReceived($start, $end){
 		return Order::between($start,$end,false)->select(DB::raw("SUM(`total`) AS Total"))->get()->first()->Total;
+    }
+
+    public static function last($num)
+    {
+        return \App\Order::orderBy('created_at', 'desc')->take($num)->get();
     }
 
     public static function lastDays($days)

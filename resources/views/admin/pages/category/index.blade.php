@@ -40,7 +40,7 @@ Here you can manage or create categories
 			        <td>{{$category->name}}</td>
 			        <td>{{$category->short_desc}}</td>
 			         @if(\Auth::user()->can('list category') || \Auth::user()->can('create category'))
-			        <td><a class="btn btn-primary" href="{{route('admin.Categories.view', ['category' => $category])}}">@can('edit categorys') Edit @else View @endcan</a> @can('delete category')<a href="{{route('admin.Categories.delete', ['category' => $category])}}" class="btn btn-danger">Delete</a>@endcan</td>
+			        <td><a class="btn btn-primary" href="{{route('admin.Categories.edit', ['category' => $category])}}">@can('edit categorys') Edit @else View @endcan</a> @can('delete category')<a href="{{route('admin.Categories.delete', ['category' => $category])}}" class="btn btn-danger">Delete</a>@endcan</td>
 			        @endif 
 			      </tr>
 			    @endforeach

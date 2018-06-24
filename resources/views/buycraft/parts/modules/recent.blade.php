@@ -4,22 +4,17 @@
 					<div class="card-body">
 						<div class="payments">
 							<div class="container-fluid">
-								<div class="row">
-									<div class="col-sm-2" style="padding: 0">
-										<img src="https://visage.surgeplay.com/head/500/PiggyPiglet.png">
-									</div>
-									<div class="col-sm-10" style="padding: 0">
-										<p>test</p>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-2" style="padding: 0">
-										<img src="https://visage.surgeplay.com/head/500/andrewa2012.png">
-									</div>
-									<div class="col-sm-10" style="padding: 0">
-										<p>test</p>
+								<?php $orders = \App\Order::last(5); ?>
+								@foreach($orders as $order)
+								<div class="payment-row row">
+									<div class="col-sm-12" style="padding: 0">
+										<img src="{{$order->getHead()}}">{{$order->username}} ({{$order->total}} {{$order->currency}})
 									</div>
 								</div>
+								@if($orders->last() != $order)
+								<hr style="margin-top: 5px;margin-bottom: 5px;border-top: 1px solid #ffffff;">
+								@endif
+								@endforeach
 							</div>
 						</div>
 					</div>

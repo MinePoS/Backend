@@ -62,7 +62,6 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
     }
 
     /**
@@ -73,7 +72,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.pages.category.edit')->with(compact("category"));
+        
     }
 
     /**
@@ -85,7 +85,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->name = request("name");
+        $category->desc = request("desc");
+        $category->short_desc = request("short_desc");
+        $category->visible = (request("visible") != null);
+        $category->featured = (request("featured") != null);
+        $category->parent_id = request("parent");
+
+        $category->save();
+        session()->flash('good', "'$category->name' saved");
+        return redirect()->route('admin.Categories');
     }
 
     /**
@@ -96,6 +105,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        session()->flash('good', "'$category->name' deleted (All products in this category will need to have a new one set)");
+        $category->delete();
+
+        return redirect()->route('admin.Categories');
     }
 }

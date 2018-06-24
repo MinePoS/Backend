@@ -1,11 +1,11 @@
 @extends('admin.layout')
 
 @section('title')
-Orders
+Products
 @endsection
 
 @section('desc')
-Here you can view all the orders that have been created.
+Here you can manage or create products
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@ Here you can view all the orders that have been created.
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Orders</h3>
+              <h3 class="box-title">Products</h3>
 
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -30,29 +30,23 @@ Here you can view all the orders that have been created.
               <table class="table table-hover">
                 <tbody><tr>
                   <th>ID</th>
-                  <th>Username</th>
-                  <th>Status</th>
-                  <th>Transaction ID</th>
-                  <th>Total</th>
+                  <th>Name</th>
+                  <th>Short Description</th>
                   <th>Actions</th>
                 </tr>
-			    @foreach ($orders as $order)
+			    @foreach ($products as $product)
 			        <tr>
-			        <td>{{$order->id}}</td>
-              <td>{{$order->username}}</td>
-              <td>{{$order->status}}</td>
-			        <td>{{$order->txid}}</td>
-			        <td>{{$order->total}} {{$order->currency}}</td>
-			        
-			        <td>
-                <a class="btn btn-primary" href="#">View</a>
-                <!-- <a href="#" class="btn btn-danger">Delete</a> -->
-              </td>
+			        <td>{{$product->id}}</td>
+			        <td>{{$product->name}}</td>
+			        <td>{{$product->short_desc}}</td>
+			         @if(\Auth::user()->can('list product') || \Auth::user()->can('create product'))
+			        <td><a class="btn btn-primary" href="{{route('admin.products.edit', ['product' => $product])}}">@can('edit product') Edit @else View @endcan</a> @can('delete product')<a href="{{route('admin.products.delete', ['product' => $product])}}" class="btn btn-danger">Delete</a>@endcan</td>
+			        @endif 
 			      </tr>
 			    @endforeach
                 
               </tbody></table>
-              {{ $orders->links() }}
+              {{ $products->links() }}
             </div>
             <!-- /.box-body -->
           </div>
