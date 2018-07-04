@@ -9,8 +9,11 @@
         "andrew-a/laravel5-paypal-ipn": "dev-master",
         "andrew-a/laravel5-paypal-ipn-new": "dev-master",
         "anlutro/l4-settings": "^0.6.0",
+        "codedge/laravel-selfupdater": "^1.4",
         "creativeorange/gravatar": "~1.0",
+        "fedeisas/laravel-mail-css-inliner": "@dev",
         "fideloper/proxy": "~4.0",
+        "gloudemans/shoppingcart": "^2.5",
         "igaster/laravel-theme": "^2.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
@@ -19,8 +22,7 @@
         "paypal/rest-api-sdk-php": "*",
         "spatie/laravel-permission": "^2.9",
         "ujjwal/currency-converter": "^2.3",
-        "xpaw/php-minecraft-query": "^2.0",
-        "fedeisas/laravel-mail-css-inliner": "@dev"
+        "xpaw/php-minecraft-query": "^2.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

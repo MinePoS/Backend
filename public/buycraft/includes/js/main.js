@@ -1,3 +1,3 @@
-$("#main-container-modal").draggable({
+$(".modal").draggable({
 	handle: ".modal-header"
 });

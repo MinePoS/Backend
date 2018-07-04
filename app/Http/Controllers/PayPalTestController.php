@@ -70,7 +70,17 @@ public function paypalIpn()
              $order->status = "payment_received";
              $commands = json_decode($order->commands,true);
 			foreach($commands as $cmdIndex => $cmdValue){
-					\App\Server::find($cmdIndex)->runCommands($cmdValue);
+                    if($cmdIndex == -1){
+                        foreach(\App\Server::all() as $srv){
+                            $srv->runCommands($cmdValue);
+                        }
+                    }else{
+                        $srv = \App\Server::find($cmdIndex);
+                        if($srv != null){
+                            $srv->runCommands($cmdValue);
+                        }
+                    }
+					
 			}
             $order->postdata = json_encode($ipn->getPostData());
 			$order->status = "processed";

@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+ 
 
 Route::get('api','APIController@checkConnection');
 
@@ -20,7 +20,17 @@ Route::get('logout','HomeController@logout')->name("store.logout");
 
 Route::get('/', 'HomeController@index')->name("store.index");
 Route::get('/category/{category}', 'HomeController@showCategory')->name("store.category");
+Route::get('/product/{product}/add', 'HomeController@addProduct')->name("store.addproduct");
 Route::get('/payment-complete', 'HomeController@paymentDone')->name("store.paymentdone");
+
+// Route::get('/test', 'HomeController@testPoint');
+
+Route::get('/cart', 'HomeController@viewCart')->name("store.viewcart");
+Route::get('/cart/clear', 'HomeController@clearCart')->name("store.clearcart");
+
+Route::get('/checkout', 'HomeController@viewCheckout')->name("store.viewcheckout");
+Route::post('/checkout', 'HomeController@checkout')->name("store.checkout");
+
 
 Route::get('paypal/','PayPalTestController@index')->name('paypal');
 Route::get('paypal/ipn','PayPalTestController@paypalIpn')->name('paypal.ipn');

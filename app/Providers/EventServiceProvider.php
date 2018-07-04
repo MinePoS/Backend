@@ -16,7 +16,13 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Event' => ['App\Listeners\EventListener',],
         'Illuminate\Auth\Events\Login' => ['App\Listeners\UserEventListener@onUserLogin'],
         'Illuminate\Auth\Events\Logout' => ['App\Listeners\UserEventListener@onUserLogout'],
-        'Illuminate\Auth\Events\Failed' => ['App\Listeners\UserEventListener@onUserFailed']
+        'Illuminate\Auth\Events\Failed' => ['App\Listeners\UserEventListener@onUserFailed'],
+        \Codedge\Updater\Events\UpdateAvailable::class => [
+            \Codedge\Updater\Listeners\SendUpdateAvailableNotification::class
+        ],
+        \Codedge\Updater\Events\UpdateSucceeded::class => [
+            \Codedge\Updater\Listeners\SendUpdateSucceededNotification::class
+        ],
     ];
 
     /**

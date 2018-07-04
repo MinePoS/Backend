@@ -152,6 +152,7 @@ return [
         anlutro\LaravelSettings\ServiceProvider::class,
         Andrew\PaypalIPN\PaypalIPNServiceProvider::class,
         Fedeisas\LaravelMailCssInliner\LaravelMailCssInlinerServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -164,6 +165,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Codedge\Updater\UpdaterServiceProvider::class,
         
     ],
 
@@ -216,7 +218,9 @@ return [
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Store' => App\Helpers\Store::class,
         'Theme' => Igaster\LaravelTheme\Facades\Theme::class,
-        'Setting' => anlutro\LaravelSettings\Facade::class
+        'Setting' => anlutro\LaravelSettings\Facade::class,
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+        'Updater' => Codedge\Updater\UpdaterManager::class,
     ],
 
 ];

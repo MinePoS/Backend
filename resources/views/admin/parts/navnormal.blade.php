@@ -10,7 +10,7 @@
                   </a>
                   <ul class="treeview-menu">
                     @if(\Auth::user()->can('create product'))
-                    <li><a href=""><i class="fa fa-plus"></i> Create Products</a></li>
+                    <li><a href="{{Route('admin.products.new')}}"><i class="fa fa-plus"></i> Create Products</a></li>
                     @endif
                     @if(\Auth::user()->can('list product'))
                     <li><a href="{{Route('admin.products')}}"><i class="fa fa-list"></i> Manage Products</a></li>

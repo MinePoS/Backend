@@ -66,6 +66,10 @@ class Order extends Model
     {
         return \App\Order::orderBy('created_at', 'desc')->take($num)->get();
     }
+        public static function lastProcessed($num)
+    {
+        return \App\Order::where("status","processed")->orderBy('created_at', 'desc')->take($num)->get();
+    }
 
     public static function lastDays($days)
     {

@@ -31,7 +31,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.category.new');
+        return view('admin.pages.product.new');
     }
 
     /**
@@ -42,17 +42,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-    $category = new \App\Category;
-    $category->name = request("name");
-    $category->desc = request("desc");
-    $category->short_desc = request("short_desc");
-    $category->visible = (request("visible") != null);
-    $category->featured = (request("featured") != null);
-    $category->parent_id = request("parent");
+    $product = new \App\Product;
 
-    $category->save();
-    session()->flash('good', 'Category created');
-    return redirect()->route('admin.Categories');
+    $product->name = request("name");
+    $product->image = request("image");
+    $product->description = request("desc");
+    $product->price = request("price");
+    $product->category_id = request("parent");
+    $product->stock = 999999;
+    $product->sold = 0; 
+    $product->commands = json_encode(Request("commands"));
+
+    $product->save();
+
+    session()->flash('good', 'Product created');
+    return redirect()->route('admin.products');
     }
 
     /**

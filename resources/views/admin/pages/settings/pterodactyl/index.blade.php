@@ -24,11 +24,12 @@ Good choice! Pterodactyl allows us to give you screeching fast processing times
               	  <label for="link">API Link</label>
                   <!-- <input class="form-control" required id="link" type="text" name="ptero_link" value="Spigot. No. You dont my API link."/> -->
                   <input class="form-control" required id="link" type="text" name="ptero_link" value="{{\Setting::get('pterodactyl_link') }}"/>
-					<label for="ckey">Client API Key</label>
-                    <input type="text" class="form-control" id="ckey" required name="ptero_key" value="">
-                    <label for="appkey">Application API Key</label>
-                    <input type="text" class="form-control" id="appkey" required name="ptero_appkey" value="">
-              
+					        <label for="ckey">Client API Key</label>
+                  @if(\env('APP_DEBUG', false))
+                  <input type="text" class="form-control" id="ckey" required name="ptero_key" value="">
+                  @else
+                  <input type="text" class="form-control" id="ckey" required name="ptero_key" value="{{\Setting::get('pterodactyl_key') }}">
+                  @endif
             </div>
 			<div class="box-footer">
               		<button type="submit" class="btn btn-primary">Save</button>
@@ -54,7 +55,7 @@ Good choice! Pterodactyl allows us to give you screeching fast processing times
 				</div>
             @endif
             <div class="box-body pad">
-              If you have admin access to your pterodactyl panel MinePoS can attempt to automagicly create all the servers in your MinePoS installation with the needed settings to get you ready in no time!.<br>
+              If you have pterodactyl panel MinePoS can attempt to automagicly create all the servers in your MinePoS installation with the needed settings to get you ready in no time!.<br>
               If you wish to do this press the button Below
             </div>
 			<div class="box-footer">

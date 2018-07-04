@@ -18,7 +18,7 @@ class Dashboard extends Controller
     }
 
     public function dd(){
-    	$json_string = json_encode(Request("commands"), JSON_PRETTY_PRINT);
+    	$json_string = json_encode(Request("commands"));
     	die($json_string);
     }
 }

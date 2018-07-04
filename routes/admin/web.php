@@ -28,6 +28,9 @@ Route::group(['prefix' => $adminPrefix], function () {
 	Route::get('403','Admin\ErrorController@forbiddenResponse')->name('admin.errors.403');
 
 	Route::get('products','Admin\ProductController@index')->middleware('permission:list product')->name('admin.products');
+	Route::get('products/new','Admin\ProductController@create')->middleware('permission:create product')->name('admin.products.new');
+	Route::post('products/new','Admin\ProductController@store')->middleware('permission:create product')->name('admin.products.new');
+	Route::get('products/{server}','Admin\ProductController@edit')->middleware('permission:create product')->name('admin.products.edit');
 	
 	Route::get('servers','Admin\ServerController@index')->middleware('permission:list servers')->name('admin.servers');
 	Route::get('servers/new','Admin\ServerController@create')->middleware('permission:create server')->name('admin.server.new');
@@ -81,6 +84,9 @@ Route::group(['prefix' => $adminPrefix], function () {
 	Route::post('settings/discord','Admin\SettingsController@testDiscord')->middleware('permission:edit settings')->name("admin.settings.discord.test");
 
 	Route::post('settings/pterodactyl/setup','Admin\SettingsController@magicPterodactyl')->middleware('permission:edit settings')->name("admin.settings.pterodactyl.setup");
+	
+	Route::post('settings/savetos','Admin\SettingsController@saveToS')->middleware('permission:edit settings')->name("admin.settings.savetos");
+
 
 	Route::post('settings/update','Admin\SettingsController@save')->middleware('permission:edit settings')->name("admin.settings.save");
 	Route::get('settings/theme','Admin\Settings\ThemeController@index')->middleware('permission:edit settings')->name("admin.settings.theme");

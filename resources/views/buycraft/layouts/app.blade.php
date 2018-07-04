@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" href="{{theme_url('includes/img/favicon.png')}}">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
   <link rel="stylesheet" type="text/css" href="{{theme_url('includes/css/main.css')}}">
 </head>
 <body>
@@ -18,7 +19,7 @@
 
       <div class="col-sm-10 col-md-6">
         
-        <a href="#" class="btn btn-dark top-btn float-md-right">Cart</a>
+        <a href="{{Route('store.viewcart')}}" class="btn btn-dark top-btn float-md-right">Cart ({{ Cart::count() }})</a>
         <a href="#" class="btn btn-dark top-btn float-md-right">USD</a>
         @if(Store::isLoggedIn()) <a href="{{route('store.logout')}}" class="btn btn-dark top-btn float-md-right btn-danger" style="background-color: #dc3545;border-color: #dc3545;">Logout ({{Store::username()}})</a>@endif
 	  </div>
@@ -60,7 +61,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-12 col-md-8">
+      <div class="col-sm-12 @if(isset($ignoremodules) && $ignoremodules == true) col-md-12 @else col-md-8 @endif">
         <div class="container-fluid">
           <div class="row">
             @if(Store::showContent())
@@ -71,7 +72,10 @@
           </div>
         </div>
       </div>
-      @include('parts.modules.recent')
+      @if(isset($ignoremodules) && $ignoremodules == true)
+        @else
+        @include('parts.modules.recent')
+      @endif
     </div>
 
 

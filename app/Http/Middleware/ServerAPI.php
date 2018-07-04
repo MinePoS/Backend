@@ -21,7 +21,7 @@ class ServerAPI
         }
         $server = \App\Server::where('api_key', $key)->first();
         if($server == null || $server->enabled == false){
-            return response()->json(array("error"=>"server not found"));
+            return response()->json(array("success"=>false,"error"=>"server not found"));
         }
         $current_time = \Carbon\Carbon::now()->toDateTimeString();
         $server->last_used = $current_time;

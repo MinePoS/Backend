@@ -9,7 +9,9 @@ class Category extends Model
     public function isSub(){
     	return ($this->parent_id != null);
     }
-
+    public function getProducts(){
+      return(\App\Product::where("category_id",$this->id)->get());  
+    } 
     public function isParent(){
     	return (count(\App\Category::where('visible',1)->where('parent_id', $this->id)->get()) > 0);
     }

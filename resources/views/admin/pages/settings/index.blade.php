@@ -41,7 +41,39 @@ Ohhh be careful please
           </div>
           <!-- /.box -->
         </div>
+
+
+<div class="col-md-12">
+          <div class="box box-info">
+            <div class="box-header">
+              <h3 class="box-title">Terms Of Service 
+                <small>This is the text that will be displayed on the checkout page</small>
+              </h3>
+            </div>
+            <!-- /.box-header -->
+            <form action="{{route('admin.settings.savetos')}}" method="POST">
+              {{csrf_field()}}
+            <div class="box-body pad">
+              
+                  <label for="title">Title</label>
+                  <input class="form-control" required id="title" type="text" name="title" value="{{\Setting::get('tos_title','TOS HERE')}}"/>
+          <label for="desc">Description</label>
+                    <textarea id="desc2" name="desc" rows="10" cols="80" style="visibility: hidden; display: none;"> 
+                      {!! \Setting::get("tos_desc","TOS HERE") !!}
+                    </textarea>
+              
+            </div>
+      <div class="box-footer">
+                  <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+        </form>
+          </div>
+          <!-- /.box -->
+        </div>
+
+
 @endsection
+
 
 
 @section("extra")
@@ -53,6 +85,7 @@ Ohhh be careful please
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
     CKEDITOR.replace('desc');
+    CKEDITOR.replace('desc2');
   })
 
 

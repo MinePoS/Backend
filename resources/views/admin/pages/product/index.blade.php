@@ -31,14 +31,16 @@ Here you can manage or create products
                 <tbody><tr>
                   <th>ID</th>
                   <th>Name</th>
-                  <th>Short Description</th>
+                  <th>Sold</th>
+                  <th>Price</th>
                   <th>Actions</th>
                 </tr>
 			    @foreach ($products as $product)
 			        <tr>
 			        <td>{{$product->id}}</td>
 			        <td>{{$product->name}}</td>
-			        <td>{{$product->short_desc}}</td>
+              <td>{{$product->sold}}</td>
+			        <td>{{$product->price}}</td>
 			         @if(\Auth::user()->can('list product') || \Auth::user()->can('create product'))
 			        <td><a class="btn btn-primary" href="{{route('admin.products.edit', ['product' => $product])}}">@can('edit product') Edit @else View @endcan</a> @can('delete product')<a href="{{route('admin.products.delete', ['product' => $product])}}" class="btn btn-danger">Delete</a>@endcan</td>
 			        @endif 

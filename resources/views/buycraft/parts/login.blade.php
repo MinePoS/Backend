@@ -8,7 +8,7 @@
 	<form action="{{Route('store.login')}}" method="POST">
 	  {{csrf_field()}}
                   <div class="input-group">
-                    <input type="text" name="username" class="form-control btn btn-dark btn-dark-input" placeholder="PiggyPiglet" required>
+                    <input type="text" name="username" class="form-control btn btn-dark btn-dark-input" placeholder="PiggyPiglet" style="margin-right: .3vw" required>
                     <button class="btn btn-dark" type="submit">Continue</button>
                   </div>
                 </form>

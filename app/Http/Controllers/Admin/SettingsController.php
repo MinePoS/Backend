@@ -36,6 +36,14 @@ class SettingsController extends Controller
     	return redirect()->back();
     }
 
+    public function saveToS(){
+        \Setting::set("tos_title", Request("title"));
+        \Setting::set("tos_desc", Request("desc"));
+        \Setting::save();
+        session()->flash('good', 'Settings saved');
+        return redirect()->back();
+    }
+
     public function showPterodactyl(){
         return view('admin.pages.settings.pterodactyl.index');
     }
@@ -44,14 +52,15 @@ class SettingsController extends Controller
 
         if(Request("ptero_link")!= null){
             \Setting::set("pterodactyl_link", Request("ptero_link"));
+            \Setting::save();
         }
         if(Request("ptero_key")!= null){
-            \Setting::set("pterodactyl_appkey", Request("ptero_key"));
+            \Setting::set("pterodactyl_key", Request("ptero_key"));
+            \Setting::save();
+
         }
-        if(Request("ptero_appkey")!= null){
-            \Setting::set("pterodactyl_appkey", Request("ptero_appkey"));
-        }
-// \Setting::save();
+
+// 
         session()->flash('good', 'Your settings have been saved');
         return redirect()->back();
     }
@@ -102,8 +111,8 @@ if($adminlink != null){
 
 // id = $server["attributes"]; 
 // name = $server["name"]; 
-$link = \Setting::get("pterodactyl_link")."application/servers";
-$authorization= "Authorization: Bearer ".\Setting::get('pterodactyl_appkey');
+$link = \Setting::get("pterodactyl_link")."client";
+$authorization= "Authorization: Bearer ".\Setting::get('pterodactyl_key');
 
 $opts = array(
   'http'=>array(
@@ -117,12 +126,14 @@ $context = stream_context_create($opts);
 $result = file_get_contents($link, false, $context);
 
         foreach(json_decode($result,true)["data"] as $server){
-            $srv = new \App\Server;
-            $srv->name = $server["attributes"]["name"];
-            $srv->ptero_id = $server["attributes"]["identifier"];
-            $srv->type="pterodactyl";
-            $srv->api_key= sha1(\Hash::make($server["attributes"]["name"]));
-            $srv->save();
+            if( $server["object"] == "server" ){
+                $srv = new \App\Server;
+                $srv->name = $server["attributes"]["name"];
+                $srv->ptero_id = $server["attributes"]["identifier"];
+                $srv->type="pterodactyl";
+                $srv->api_key= sha1(\Hash::make($server["attributes"]["name"]));
+                $srv->save();
+            }
         }
         session()->flash('good', 'MinePoS found '.count(\App\Server::all()).' servers they have been added to your store');
         return redirect()->back();
