@@ -3,7 +3,7 @@
 @section('content')
     <center><h3>Redirecting to paypal</h3></center>
     <img width="301" style="margin: auto;" src="http://i.imgur.com/GCNyjJY.gif"></img>
-    <form name="myform" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+    <form name="myform" action="https://www.paypal.com/cgi-bin/webscr" method="post">
     <input type="hidden" name="business" value="{{\Setting::get('paypal_email')}}" />
     <input type="hidden" name="notify_url" value="{{route('paypal.ipn')}}" />
     <input type="hidden" name="cancel_return" value="{{route('store.index')}}" />
