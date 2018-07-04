@@ -230,6 +230,11 @@ color: #fff;
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
+      @if(Updater::isNewVersionAvailable(\Updater::getVersionInstalled("v","")))
+      <div class="alert alert-info" role="alert">
+        There is a update available you are running {{\Updater::getVersionInstalled("v","")}}, the newest version is {{\Updater::getVersionAvailable()}}
+      </div>
+      @endif
       <h1>
         @yield('title')
         <small>@yield('desc')</small>
@@ -266,7 +271,7 @@ color: #fff;
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 1.0.0-ALPHA
+      <b>Version</b> {{\Updater::getVersionInstalled()}}
     </div>
     Copyright &copy; 2016 - {{date("Y")}} <strong><a href="https://minepos.net/">MinePoS</a></strong>
     <a href="#" style="color:transparent;">Oof</a>

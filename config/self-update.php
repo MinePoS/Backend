@@ -22,7 +22,7 @@ return [
     |
     */
 
-    'version_installed' => env('SELF_UPDATER_VERSION_INSTALLED', ''),
+    'version_installed' => env('SELF_UPDATER_VERSION_INSTALLED', '0.0.2'),
 
     /*
     |--------------------------------------------------------------------------
@@ -38,8 +38,8 @@ return [
     'repository_types' => [
         'github' => [
             'type' => 'github',
-            'repository_vendor' => env('SELF_UPDATER_REPO_VENDOR', ''),
-            'repository_name' => env('SELF_UPDATER_REPO_NAME', ''),
+            'repository_vendor' => env('SELF_UPDATER_REPO_VENDOR', 'MinePoS'),
+            'repository_name' => env('SELF_UPDATER_REPO_NAME', 'Backend'),
             'repository_url' => 'https://github.com/MinePoS/Backend.git',
             'download_path' => env('SELF_UPDATER_DOWNLOAD_PATH', '/tmp'),
         ],

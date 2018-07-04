@@ -30,7 +30,8 @@ Route::group(['prefix' => $adminPrefix], function () {
 	Route::get('products','Admin\ProductController@index')->middleware('permission:list product')->name('admin.products');
 	Route::get('products/new','Admin\ProductController@create')->middleware('permission:create product')->name('admin.products.new');
 	Route::post('products/new','Admin\ProductController@store')->middleware('permission:create product')->name('admin.products.new');
-	Route::get('products/{server}','Admin\ProductController@edit')->middleware('permission:create product')->name('admin.products.edit');
+	Route::get('products/{product}','Admin\ProductController@edit')->middleware('permission:create product')->name('admin.products.edit');
+	Route::post('products/{product}','Admin\ProductController@update')->middleware('permission:create product')->name('admin.products.edit');
 	
 	Route::get('servers','Admin\ServerController@index')->middleware('permission:list servers')->name('admin.servers');
 	Route::get('servers/new','Admin\ServerController@create')->middleware('permission:create server')->name('admin.server.new');
@@ -93,4 +94,8 @@ Route::group(['prefix' => $adminPrefix], function () {
 	Route::get('settings/theme/set/{themeName}','Admin\Settings\ThemeController@set')->middleware('permission:edit settings')->name("admin.settings.theme.set");
 	Route::get('settings/theme/upload','Admin\Settings\ThemeController@uploadform')->middleware('permission:edit settings')->name("admin.settings.theme.upload");
 	Route::POST('settings/theme/upload','Admin\Settings\ThemeController@upload')->middleware('permission:edit settings')->name("admin.settings.theme.upload");
+
+	Route::get('settings/update','Admin\SettingsController@viewUpdate')->middleware('permission:edit settings')->name("admin.settings.update");
+	Route::post('settings/update','Admin\SettingsController@doUpdate')->middleware('permission:edit settings')->name("admin.settings.update");
+
 });

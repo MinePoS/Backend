@@ -38,7 +38,7 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Respons e
      */
     public function store(Request $request)
     {
@@ -65,9 +65,8 @@ class ProductController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Product $product)
     {
-        //
     }
 
     /**
@@ -76,9 +75,9 @@ class ProductController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Product $product)
     {
-        //
+        return view('admin.pages.product.edit')->with(["product"=>$product]);
     }
 
     /**
@@ -88,9 +87,20 @@ class ProductController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Product $product)
     {
-        //
+            $product->name = request("name");
+            $product->image = request("image");
+            $product->description = request("desc");
+            $product->price = request("price");
+            $product->category_id = request("parent");
+            $product->stock = 999999;
+            $product->commands = json_encode(Request("commands"));
+
+            $product->save();
+
+            session()->flash('good', $product->name.' updated');
+            return redirect()->route('admin.products');
     }
 
     /**
@@ -99,7 +109,7 @@ class ProductController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Product $product)
     {
         //
     }

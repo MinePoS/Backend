@@ -140,7 +140,21 @@ $result = file_get_contents($link, false, $context);
 
     }
 
+public function viewUpdate(){
+    return view('admin.pages.settings.update.index');
+}
 
+public function doUpdate(){
+    if(\Updater::isNewVersionAvailable(\Updater::getVersionInstalled("v",""))){
+        \Updater::update();
+        session()->flash('good', 'MinePoS has been updated');
+        return view('admin.pages.dashboard');
+    }else{
+        session()->flash('bad', 'MinePoS is already up-to-date');
+        return view('admin.pages.dashboard');
+    }
+    
+}
 
 
 }

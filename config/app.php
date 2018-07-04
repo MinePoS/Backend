@@ -220,7 +220,7 @@ return [
         'Theme' => Igaster\LaravelTheme\Facades\Theme::class,
         'Setting' => anlutro\LaravelSettings\Facade::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
-        'Updater' => Codedge\Updater\UpdaterManager::class,
+        'Updater' => Codedge\Updater\UpdaterFacade::class,
     ],
 
 ];

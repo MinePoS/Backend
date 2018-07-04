@@ -8,3 +8,6 @@
 
 <li class="@if(\Request::is('admin/settings/discord*')) active @endif"><a href="{{Route('admin.settings.discord')}}"><i class="fa fa-question" aria-hidden="true"></i>
 </i> <span>Discord</span></a></li>
+
+<li class="@if(\Request::is('admin/settings/update*')) active @endif"><a href="{{Route('admin.settings.update')}}"><i class="fa fa-wrench" aria-hidden="true"></i>
+</i> <span>Update</span></a></li>
