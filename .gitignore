@@ -5,7 +5,7 @@ npm-debug.log
 # Laravel 4 specific
 bootstrap/compiled.php
 app/storage/
-
+storage/settings.json
 storage/settings.json.backu
 
 # Laravel 5 & Lumen specific

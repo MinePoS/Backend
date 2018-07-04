@@ -95,7 +95,7 @@ Route::group(['prefix' => $adminPrefix], function () {
 	Route::get('settings/theme/upload','Admin\Settings\ThemeController@uploadform')->middleware('permission:edit settings')->name("admin.settings.theme.upload");
 	Route::POST('settings/theme/upload','Admin\Settings\ThemeController@upload')->middleware('permission:edit settings')->name("admin.settings.theme.upload");
 
-	Route::get('settings/update','Admin\SettingsController@viewUpdate')->middleware('permission:edit settings')->name("admin.settings.update");
-	Route::post('settings/update','Admin\SettingsController@doUpdate')->middleware('permission:edit settings')->name("admin.settings.update");
+	Route::get('settings/updates','Admin\SettingsController@viewUpdate')->middleware('permission:edit settings')->name("admin.settings.update");
+	Route::post('settings/updates','Admin\SettingsController@doUpdate')->middleware('permission:edit settings')->name("admin.settings.update");
 
 });
