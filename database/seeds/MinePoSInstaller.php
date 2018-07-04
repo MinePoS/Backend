@@ -18,5 +18,7 @@ class MinePoSInstaller extends Seeder
 		$u->email = "admin@minepos.net";
 		$u->password = \Hash::make("password");
 		$u->save();
+
+        $u->assignRole(\Spatie\Permission\Models\Role::all()->first());
     }
 }
