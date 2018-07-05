@@ -62,7 +62,7 @@ return [
         'bootstrap/cache',
         'bower',
         'storage/app',
-        'storage/settings.json',
+        'storage',
         'storage/framework',
         'storage/logs',
         'storage/self-update',
