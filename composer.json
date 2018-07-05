@@ -6,9 +6,9 @@
     "type": "project",
     "require": {
         "php": ">=7.1.3",
+        "andrew-a/laravel-selfupdater": "dev-master",
         "andrew-a/laravel5-paypal-ipn-new": "dev-master",
         "anlutro/l4-settings": "^0.6.0",
-        "codedge/laravel-selfupdater": "^1.4",
         "creativeorange/gravatar": "~1.0",
         "fedeisas/laravel-mail-css-inliner": "@dev",
         "fideloper/proxy": "~4.0",
