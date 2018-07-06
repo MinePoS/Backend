@@ -9,6 +9,10 @@ Route::group(['prefix' => $adminPrefix], function () {
 	Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 	Route::post('register', 'Auth\RegisterController@register');
 
+	Route::get('change-password','Admin\Dashboard@showChangePassword')->name('admin.account.changepassword');
+	Route::post('change-password','Admin\Dashboard@doChangePassword')->name('admin.account.changepassword');
+
+
 	// Password Reset Routes...
 	Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 	Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');

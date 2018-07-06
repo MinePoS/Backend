@@ -171,7 +171,7 @@ color: #fff;
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{Route('admin.account.changepassword')}}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{Route('logout')}}" class="btn btn-default btn-flat">Sign out</a>
