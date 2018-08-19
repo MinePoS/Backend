@@ -28,7 +28,7 @@ class Dashboard extends Controller
     
 
     public function doChangePassword(){
-        if (Hash::check(\Request('current_password'), \Auth::user()->password)) {
+        if (\Hash::check(\Request('current_password'), \Auth::user()->password)) {
                 $new1 = \Request('new_password');
                 $new2 = \Request('new_password_repeat');
                 if($new1 == $new2){
