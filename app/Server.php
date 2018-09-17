@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Log;
+use Illuminate\Support\Facades\Log;
 
 class Server extends Model
 {
