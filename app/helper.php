@@ -26,6 +26,10 @@ class Store
 		$isRoot = \Request::is('/');
 		return($loggedin || $isRoot);
 	}
+
+	public static function moneyFormat($number){
+return number_format($number, 2, '.', ',');
+	}
 }
 
 ?>

@@ -41,7 +41,7 @@ return [
             'repository_vendor' => env('SELF_UPDATER_REPO_VENDOR', 'MinePoS'),
             'repository_name' => env('SELF_UPDATER_REPO_NAME', 'Backend'),
             'repository_url' => 'https://github.com/MinePoS/Backend.git',
-            'download_path' => env('SELF_UPDATER_DOWNLOAD_PATH', '/tmp'),
+            'download_path' => env('SELF_UPDATER_DOWNLOAD_PATH', '/tmp/'),
         ],
     ],
 
@@ -62,7 +62,7 @@ return [
         'bootstrap/cache',
         'bower',
         'storage/app',
-        'storage',
+        'storage/settings.json',
         'storage/framework',
         'storage/logs',
         'storage/self-update',

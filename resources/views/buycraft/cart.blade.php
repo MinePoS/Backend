@@ -32,7 +32,7 @@ Cart
                           @foreach(Cart::content() as $item)
                           <tr>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->price}}</td>
+                            <td>{{Store::moneyFormat($item->price)}}</td>
                             <td>
                               <input type="number" min="1" class="btn btn-dark btn-dark-input" value="{{$item->qty}}">
                             </td>
@@ -56,7 +56,7 @@ Cart
 
                   @if(Cart::count() > 0)
                   <hr class="MinePoSHR">
-                    Total: {{Cart::subtotal()}}
+                    Total: {{Store::moneyFormat(Cart::subtotal())}}
                   <hr class="MinePoSHR">
 
                   <div class="row cart-button-row">

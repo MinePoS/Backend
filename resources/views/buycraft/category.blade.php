@@ -13,7 +13,7 @@
 				@foreach($category->getProducts() as $product)
 				<tr>
 					<td>{{$product->name}}</td>
-					<td><p class="float-right">{{$product->price}} <a href="#" data-toggle="modal" data-target="#Product{{$product->id}}" class="btn btn-dark">Buy</a></p></td>
+					<td><p class="float-right">{{Store::moneyFormat($product->price)}} <a href="#" data-toggle="modal" data-target="#Product{{$product->id}}" class="btn btn-dark">Buy</a></p></td>
 				</tr>
 				@endforeach
 			</tbody>
