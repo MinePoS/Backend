@@ -7,18 +7,18 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="/admin/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/admin/bower_components/bootstrap/dist/css/bootstrap.min.css">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/admin/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/admin/bower_components/font-awesome/css/font-awesome.min.css">
 
   <!-- Ionicons -->
-  <link rel="stylesheet" href="/admin/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="/assets/admin/bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="/admin/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/assets/admin/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="/admin/dist/css/skins/skin-black.css">
+  <link rel="stylesheet" href="/assets/admin/dist/css/skins/skin-black.css">
 
 
   <meta name="application-name" content="MinePoS">
@@ -30,7 +30,7 @@
   <meta property="og:url" content="{{url()->current()}}" />
   <meta property="og:title" content="@yield('title') | {{ env('APP_NAME') }} Admin" />
   <meta property="og:description" content="@yield('desc')" />
-  <meta property="og:image" content="{{url('/admin/logo.png')}}" />
+  <meta property="og:image" content="{{url('/assets/admin/logo.png')}}" />
 @yield('head')
 <!-- <style type="text/css">
 .content-wrapper {
@@ -280,17 +280,17 @@ color: #fff;
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="/admin/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/assets/admin/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/assets/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- SlimScroll -->
-<script src="/admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/assets/admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<script src="/admin/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="/assets/admin/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="/admin/dist/js/adminlte.min.js"></script>
+<script src="/assets/admin/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="/admin/dist/js/demo.js"></script>
+<script src="/assets/admin/dist/js/demo.js"></script>
 <script>
   $(document).ready(function () {
     $('.sidebar-menu').tree()
