@@ -32,10 +32,6 @@ Route::get('/checkout', 'HomeController@viewCheckout')->name("store.viewcheckout
 Route::post('/checkout', 'HomeController@checkout')->name("store.checkout");
 
 
-Route::get('paypal/','PayPalTestController@index')->name('paypal');
-Route::get('paypal/ipn','PayPalTestController@paypalIpn')->name('paypal.ipn');
-Route::post('paypal/ipn','PayPalTestController@paypalIpn')->name('paypal.ipn');
-
 $adminPrefix = Setting::get('admin.url', 'admin');
 if(Request::is($adminPrefix.'/*') || Request::is($adminPrefix.'/') || Request::is($adminPrefix))
 {
