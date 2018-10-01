@@ -44,6 +44,10 @@ Gotta keep it up to date, right?
                        <label for="srvID">Pterodactyl Server ID</label><br>
                         <input type="text" class="form-control" name="srvID" value="{{$server->ptero_id}}" id="srvID"><br>
                     </div>
+                     <div class="form-group" id="plugin-settings" @if($server->type != "plugin") style="display: none;" @endif>
+                       <label for="httpSrvIP">HTTP Server IP</label><br>
+                        <input type="text" class="form-control" name="httpSrvIP" value="{{$server->http_server_ip}}" id="httpSrvIP"><br>
+                    </div>
               </div>
               <!-- /.box-body -->
 
@@ -67,8 +71,10 @@ Gotta keep it up to date, right?
     $('.srvSel').on('ifChecked', function(event){
       if(event.target.value == "pterodactyl"){
         $("#pterodactyl-settings").show();
+        $("#plugin-settings").hide();
       }else{
         $("#pterodactyl-settings").hide();
+        $("#plugin-settings").show();
       }
     });
 

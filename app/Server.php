@@ -17,14 +17,45 @@ class Server extends Model
     		$this->runCommand($command); 
     	}
     }
-    public function runCommand($command){
+
+    public function runCommand($command, $uuid=null, $orderid = null){
     	if($this->type == "plugin"){
-    		$cmd = new \App\CommandQueue;
-    		$cmd->server_id = $this->id;
-    		$cmd->command = $command;
-    		$cmd->save();
+
+            $cmd = new \App\CommandQueue;
+            $cmd->server_id = $this->id;
+            $cmd->command = $command;
+            $cmd->save();
+
+            $base_link = $this->http_server_ip."/runcommand";
+            $curl = curl_init();
+            $b64command = base64_encode($command);
+            $curlURL = $base_link."?command=".$b64command."&QueueID=".$cmd->id;
+            if($uuid != null){
+                $curlURL = $curlURL."&uuid=".$uuid;
+            }
+            if($orderid != null){
+                $curlURL = $curlURL."&orderid=".$orderid;
+            }
+            curl_setopt_array($curl, array(
+                CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_URL => $curlURL,
+                CURLOPT_HTTPHEADER => array( 
+                    "MINEPOS_AUTH: $this->api_key",
+                ),                                       
+            ));
+            $result = curl_exec($curl);
+            curl_close($curl);
+
+            if($result == ""){
+                Log::info("[$this->name] Command Ran: $command");
+                return true;
+            }else{
+                return false;
+            }
+
     		return $cmd;
-    	}elseif($this->type == "pterodactyl"){
+    	
+        }elseif($this->type == "pterodactyl"){
 
     		$base_link = \Setting::get('pterodactyl_link')."client/servers/".$this->ptero_id."/command";
 			$authorization= "Authorization: Bearer ".\Setting::get('pterodactyl_key');

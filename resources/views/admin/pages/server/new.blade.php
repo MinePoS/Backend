@@ -44,6 +44,10 @@ Guys its happening! A new server!
                        <label for="srvID">Pterodactyl Server ID</label><br>
                         <input type="text" class="form-control" name="srvID" id="srvID"><br>
                     </div>
+                    <div class="form-group" id="plugin-settings">
+                       <label for="httpSrvIP">HTTP Server IP</label><br>
+                        <input type="text" class="form-control" name="httpSrvIP" id="httpSrvIP"><br>
+                    </div>
               </div>
               <!-- /.box-body -->
 
@@ -67,9 +71,11 @@ Guys its happening! A new server!
     $('.srvSel').on('ifChecked', function(event){
       if(event.target.value == "pterodactyl"){
         $("#pterodactyl-settings").show();
+        $("#plugin-settings").hide();
       }else{
         $("#pterodactyl-settings").hide();
-      }
+        $("#plugin-settings").show();
+      } 
     });
 
     $('input').iCheck({

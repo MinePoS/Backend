@@ -52,6 +52,7 @@ class ServerController extends Controller
         $server->api_key = sha1(\Hash::make(request("name")));
         $server->type = request("srvType");
         $server->ptero_id = request("srvID");
+        $server->http_server_ip = request("httpSrvIP");
         $server->save();
         return redirect()->route('admin.servers');
     }
@@ -96,6 +97,7 @@ class ServerController extends Controller
         $server->enabled = $enabled;
         $server->api_key = sha1(\Hash::make(request("name")));
         $server->type = request("srvType");
+        $server->http_server_ip = request("httpSrvIP");
         $server->ptero_id = request("srvID");
         $server->save();
         

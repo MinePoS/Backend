@@ -20,7 +20,12 @@ class OrderController extends Controller
     
     public function index()
     {
-        $orders = Order::orderBy('created_at','DESC')->paginate(15);
+        if(request("username") != null){
+            $orders = Order::where("username", request("username"))->orderBy('created_at','DESC')->paginate(15);
+        }else{
+            $orders = Order::orderBy('created_at','DESC')->paginate(15);
+        }
+        
         return view('admin.pages.order.index')->with(compact("orders"));
     }
 

@@ -1,26 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
+<html style="height: auto;"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>@yield('title') | {{ env('APP_NAME') }} Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="/admin/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/admin/bower_components/font-awesome/css/font-awesome.min.css">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="/admin/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="/admin/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="/admin/dist/css/skins/skin-black.css">
-
-
+  <link rel="stylesheet" href="{{asset('assets/admin/dist/css/adminlte.min.css')}}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  
   <meta name="application-name" content="MinePoS">
   <meta name="author" content="AndrewAubury & PiggyPiglet">
   <meta name="description" content="Self-Hosted Minecraft store">
@@ -30,204 +23,85 @@
   <meta property="og:url" content="{{url()->current()}}" />
   <meta property="og:title" content="@yield('title') | {{ env('APP_NAME') }} Admin" />
   <meta property="og:description" content="@yield('desc')" />
-  <meta property="og:image" content="{{url('/admin/logo.png')}}" />
-@yield('head')
-<!-- <style type="text/css">
-.content-wrapper {
-    min-height: 100%;
-    background-color: #1c1c1c;
-    z-index: 800;
-}
-body {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #ccc;
-}
-.main-footer {
-    background: #151515;
-    padding: 15px;
-    color: #bdbdbd;
-    border-top: 1px solid #151515;
-}
-.box {
-    position: relative;
-    border-radius: 3px;
-    background: #242424;
-    border-top: 3px solid #151515;
-    margin-bottom: 20px;
-    width: 100%;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-}
-.box-header{
-  color: #ddd;
-}
-.table-hover > tbody > tr:hover {
-
-    background-color: #1c1c1c;
-
-}
-.box-footer {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-top: 1px solid #1d1d1d;
-    padding: 10px;
-    background-color: #1d1d1d;
-}
-.form-control {
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #fff;
-    background-color: #555;
-    background-image: none;
-    border: 1px solid #555;
-    border-radius: 4px;
-  }
-  .select2-container--default .select2-selection--single {
-    background-color: #555;
-    border: 1px solid #555;
-    color: #fff;
-    border-radius: 4px;
-}
-.select2-dropdown {
-    background-color: #555;
-    color: #fff;
-    border: 1px solid #555;
- }
- .select2-container--default .select2-selection--single .select2-selection__rendered {
-color: #fff;
-  }
-  .select2-container--default .select2-search--dropdown .select2-search__field{
-        color: #fff;
-    background-color: #555;
-    background-image: none;
-    border: 1px solid #555;
-  }
-</style> -->
-
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <meta property="og:image" content="{{url('assets/logo.png')}}" />
+  @yield('head')
+  
 </head>
-<body class="hold-transition skin-black sidebar-mini">
+<body class="sidebar-mini sidebar-open" style="height: auto;">
 <!-- Site wrapper -->
 <div class="wrapper">
-
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="{{Route('admin.dashboard')}}" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">{{ env('APP_NAME') }}</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">{{ env('APP_NAME') }}</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-
-         
-     <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{Gravatar::get(Auth::user()->email)}}" class="user-image" alt="User Image">
-              <span class="hidden-xs">{{Auth::user()->name}}</span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="{{Gravatar::get(Auth::user()->email)}}" width="160" class="img-circle" alt="User Image">
-
-                <p>
-                  {{Auth::user()->name}}
-                  <small>{{Auth::user()->getRole()}}</small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="{{Route('admin.account.changepassword')}}" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="{{Route('logout')}}" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">    
+    <ul class="navbar-nav ml-auto">
+    <!-- User Account: style can be found in dropdown.less -->
+    
           <!-- Control Sidebar Toggle Button -->
-          <li>
+          <li class="nav-item">
             @can('edit settings')
-            <a href="@if(\Request::is('admin/settings*')) {{route('admin.dashboard')}} @else {{route('admin.settings')}} @endif"><i class="fa @if(\Request::is('admin/settings*')) fa-dashboard @else fa-gears @endif"></i></a>
+            <a class="nav-link" href="@if(\Request::is('admin/settings*')) {{route('admin.dashboard')}} @else {{route('admin.settings')}} @endif"><i class="fa @if(\Request::is('admin/settings*')) fa-dashboard @else fa-gears @endif nav-icon"></i></a>
             @endcan
           </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+      <li class="nav-item">
+          <a class="nav-link" href="{{Route('logout')}}">
+      <i class="fa fa-lock nav-icon"></i>
+      </a>
+    </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{{Route('logout')}}">
+      <i class="fa fa-sign-out nav-icon"></i>
+      </a>
+    </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
 
-  <!-- =============================================== -->
-
-  <!-- Left side column. contains the sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="{{Gravatar::get(Auth::user()->email)}}" width="160" class="img-circle" alt="User Image">
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 597px;">
+    <!-- Brand Logo -->
+  <a href="{{Route('admin.dashboard')}}" class="brand-link">
+      <img src="{{url('assets/logo.png')}}" alt="MinePoS Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="logo-lg">{{ env('APP_NAME') }}</span>
+    </a>
+  
+    <!-- Sidebar -->
+    <div class="sidebar">
+      
+    
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{{Gravatar::get(Auth::user()->email)}}" class="img-circle elevation-2" alt="User Image">
         </div>
-        <div class="pull-left info">
-          <p>{{Auth::user()->name}}</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        <div class="info">
+          <a href="{{Route('admin.account.changepassword')}}" class="d-block">{{Auth::user()->name}}</a>
         </div>
       </div>
- 
-      </form>
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      @if(Auth::user()->getAllPermissions()->first() != null)
-      <ul class="sidebar-menu" data-widget="tree">
-<!--         <li class="header">MAIN NAVIGATION</li> -->
-        @if(\Request::is('admin/settings*') == false)
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+    
+    @if(Auth::user()->getAllPermissions()->first() != null)
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+    
+     
+      @if(\Request::is('admin/settings*') == false)
           @include('admin.parts.navnormal')
         @else
           @include('admin.parts.navsettings')
         @endif
-      </ul>
-      @endif
-    </section>
+        </ul>
+          @endif  
+
+      
+    </nav>
+      <!-- /.sidebar-menu -->
+    </div>
     <!-- /.sidebar -->
   </aside>
 
-  <!-- =============================================== -->
-
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="min-height: 597px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       @if(Updater::isNewVersionAvailable(\Updater::getVersionInstalled("v","")))
@@ -236,9 +110,9 @@ color: #fff;
       </div>
       @endif
       <h1>
-        @yield('title')
-        <small>@yield('desc')</small>
-      </h1>
+        @yield('title')</h1>
+        <small class="muted">@yield('desc')</small>
+      
     </section>
 
     <!-- Main content -->
@@ -265,37 +139,35 @@ color: #fff;
   @yield('content')
   
     </section>
+
+    <!-- Main content -->
+    
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
+<footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> {{\Updater::getVersionInstalled()}}
     </div>
     Copyright &copy; 2016 - {{date("Y")}} <strong><a href="https://minepos.net/">MinePoS</a></strong>
     <a href="#" style="color:transparent;">Oof</a>
   </footer>
-</div>
+
+<div id="sidebar-overlay"></div></div>
 <!-- ./wrapper -->
 
-<!-- jQuery 3 -->
-<script src="/admin/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- jQuery -->
+<script src="{{asset('assets/admin/plugins/jquery/jquery.min.js')}}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{asset('assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- SlimScroll -->
-<script src="/admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="{{asset('assets/admin/plugins/slimScroll/jquery.slimscroll.min.js')}}"></script>
 <!-- FastClick -->
-<script src="/admin/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="{{asset('assets/admin/plugins/fastclick/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="/admin/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="/admin/dist/js/demo.js"></script>
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-</script>
-@yield('extra')
-</body>
-</html>
+<script src="{{asset('assets/admin/dist/js/adminlte.js')}}"></script>
+<script src="{{asset('assets/admin/dist/js/demo.js')}}"></script>
+
+
+</body></html>
