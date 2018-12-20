@@ -12,15 +12,15 @@ Made a mistake? No Prob-Lamo
 
 <div class="col-md-12">
           <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Editing {{$category->name}}</h3>
+          <div class="card card-primary">
+            <div class="card-header with-border">
+              <h3 class="card-title">Editing {{$category->name}}</h3>
             </div>
-            <!-- /.box-header -->
+            <!-- /.card-header -->
             <!-- form start -->
             <form role="form" action="{{route('admin.Categories.edit',["category"=>$category])}}" method="POST">
             	{{csrf_field()}}
-              <div class="box-body">
+              <div class="card-body">
                 <div class="form-group">
                   <label for="name">Name</label>
                   <input class="form-control" name="name" id="name" placeholder="Category Name" value="{{$category->name}}" required>
@@ -61,14 +61,14 @@ Made a mistake? No Prob-Lamo
 					</select>
                 </div>
               </div>
-              <!-- /.box-body -->
+              <!-- /.card-body -->
 
-              <div class="box-footer">
+              <div class="card-footer">
               		<button type="submit" class="btn btn-primary">Save</button>
               </div>
             </form>
           </div>
-          <!-- /.box -->
+          <!-- /.card -->
         </div>
 @endsection
 
@@ -84,7 +84,7 @@ Made a mistake? No Prob-Lamo
 
 @section('extra')
 	<script src="/admin/plugins/iCheck/icheck.min.js"></script>
-	<script src="/admin/bower_components/ckeditor/ckeditor.js"></script>
+	<script src="/admin/plugins/ckeditor/ckeditor.js"></script>
 	<script src="/admin/bower_components/select2/dist/js/select2.full.min.js"></script>
 
 <script type="text/javascript">

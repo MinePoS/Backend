@@ -1,0 +1,5 @@
+{
+    "name": "MDBootstrap",
+    "extends": "buycraft",
+    "asset-path": "MDBootstrap"
+}

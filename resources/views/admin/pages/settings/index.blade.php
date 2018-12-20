@@ -10,65 +10,64 @@ Ohhh be careful please
 
 @section('content')
 <div class="alert alert-danger" role="alert">
-  This is the site wide settings panel, please take care editing settings if you dont know what the setting does probbaly better not touch it. 
+  This is the site wide settings panel, please take care editing settings. If you dont know what a setting does it is  probably better not to touch it. 
 </div>
 
 
 <div class="col-md-12">
-          <div class="box box-info">
-            <div class="box-header">
-              <h3 class="box-title">Home page
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Home page
                 <small>This is the text that will be displayed on the home page</small>
               </h3>
             </div>
-            <!-- /.box-header -->
+            <!-- /.card-header -->
             <form action="{{route('admin.settings.save')}}" method="POST">
             	{{csrf_field()}}
-            <div class="box-body pad">
+            <div class="card-body pad">
               
               	  <label for="title">Title</label>
                   <input class="form-control" required id="title" type="text" name="title" value="{{\Store::homeTitle()}}"/>
 					<label for="desc">Description</label>
-                    <textarea id="desc" name="desc" rows="10" cols="80" style="visibility: hidden; display: none;"> 
+                    <textarea class="form-control" id="desc" name="desc" rows="10" cols="80"> 
                     	{!! \Store::homeDesc() !!}
                     </textarea>
               
             </div>
-			<div class="box-footer">
+			<div class="card-footer">
               		<button type="submit" class="btn btn-primary">Save</button>
               </div>
         </form>
           </div>
-          <!-- /.box -->
+          <!-- /.card -->
         </div>
 
 
 <div class="col-md-12">
-          <div class="box box-info">
-            <div class="box-header">
-              <h3 class="box-title">Terms Of Service 
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Terms Of Service 
                 <small>This is the text that will be displayed on the checkout page</small>
               </h3>
             </div>
-            <!-- /.box-header -->
+            <!-- /.card-header -->
             <form action="{{route('admin.settings.savetos')}}" method="POST">
               {{csrf_field()}}
-            <div class="box-body pad">
+            <div class="card-body pad">
               
-                  <label for="title">Title</label>
+                  <label for="title">TOS Title</label>
                   <input class="form-control" required id="title" type="text" name="title" value="{{\Setting::get('tos_title','TOS HERE')}}"/>
-          <label for="desc">Description</label>
-                    <textarea id="desc2" name="desc" rows="10" cols="80" style="visibility: hidden; display: none;"> 
+          <label for="desc">TOS</label>
+                    <textarea class="form-control" id="desc2" name="desc" rows="10" cols="80"> 
                       {!! \Setting::get("tos_desc","TOS HERE") !!}
                     </textarea>
-              
             </div>
-      <div class="box-footer">
+      <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Save</button>
               </div>
         </form>
           </div>
-          <!-- /.box -->
+          <!-- /.card -->
         </div>
 
 
@@ -77,15 +76,17 @@ Ohhh be careful please
 
 
 @section("extra")
-<script src="/admin/bower_components/ckeditor/ckeditor.js"></script>
+<script src="/admin/plugins/ckeditor/ckeditor.js"></script>
 
 <script type="text/javascript">
 	
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
-    CKEDITOR.replace('desc');
-    CKEDITOR.replace('desc2');
+  
+    ClassicEditor.create(document.querySelector('#desc'))
+    ClassicEditor.create(document.querySelector('#desc2'))
+ 
   })
 
 

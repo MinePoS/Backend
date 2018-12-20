@@ -12,13 +12,15 @@
 */
  
 
-Route::get('api','APIController@checkConnection');
+
 
 Route::post('login','HomeController@login')->name("store.login");
 Route::get('login','HomeController@index')->name("store.login");
 Route::get('logout','HomeController@logout')->name("store.logout");
 
 Route::get('/', 'HomeController@index')->name("store.index");
+Route::get('/setcurrency/{currency}', 'HomeController@setCurrency')->name("store.setcurrency");
+
 Route::get('/category/{category}', 'HomeController@showCategory')->name("store.category");
 Route::get('/product/{product}/add', 'HomeController@addProduct')->name("store.addproduct");
 Route::get('/payment-complete', 'HomeController@paymentDone')->name("store.paymentdone");

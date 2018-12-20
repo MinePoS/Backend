@@ -13,14 +13,24 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-sm-12 col-md-6">
+      <div class="col-sm-2 col-md-4">
         <img src="{{theme_url('includes/img/favicon.png')}}" class="logo">
       </div>
 
-      <div class="col-sm-10 col-md-6">
+      <div class="col-sm-10 col-md-8">
         
         <a href="{{Route('store.viewcart')}}" class="btn btn-dark top-btn float-md-right">Cart ({{ Cart::count() }})</a>
-        <a href="#" class="btn btn-dark top-btn float-md-right">USD</a>
+        
+
+        <a class="btn btn-dark top-btn float-md-right dropdown-toggle" href="#" id="currency" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{\Store::getCurrentCurencyString()}}</a>
+       <div class="dropdown-menu" aria-labelledby="currency">
+        @foreach(\App\VirtualCurrency::all() as $c)
+          <a class="dropdown-item" href="{{Route('store.setcurrency',['currency'=>$c->id])}}">{{$c->name}}</a>
+          @endforeach
+          <a class="dropdown-item" href="{{Route('store.setcurrency',['currency'=>'USD'])}}">USD</a>
+        </div>
+        
+
         @if(Store::isLoggedIn()) <a href="{{route('store.logout')}}" class="btn btn-dark top-btn float-md-right btn-danger" style="background-color: #dc3545;border-color: #dc3545;">Logout ({{Store::username()}})</a>@endif
 	  </div>
     </div>

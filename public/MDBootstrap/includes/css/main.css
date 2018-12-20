@@ -1,0 +1,258 @@
+/*
+#252830
+#434857
+#1e2127
+#585e72
+#15171c
+*/
+@import url('https://fonts.googleapis.com/css?family=Arimo');
+
+html, body {
+  background: #252830;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body > .container {
+  flex: 1;
+}
+.page-header {
+	border-bottom: 1px solid #4b5563;
+	margin-bottom: 1vh;
+}
+.page-header label {
+	font-size: 140%;
+}
+.container {
+	padding: 0 5.6vw;
+}
+.logo {
+  margin: 3vh 0;
+  width: 8vh;
+}
+.top-btn {
+  margin-top: 6vh;
+  margin-left: .5vw;
+}
+@media (max-width: 576px) {
+  .logo {
+    margin: 0 auto;
+  }
+  .container {
+  	padding: 0 5vw;
+  }
+}
+.btn, .btn:focus {
+  font-size: 100%;
+  padding: 1vh 2vw;
+  color: #d8d8d8;
+  box-shadow: 0px 7px 10px -1px rgba(0,0,0,.37);
+  border: none;
+  border-radius: 0;
+  transition: all .3s cubic-bezier(.175,.885,.32,1.275);
+}
+.btn:hover {
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0px 7px 10px -1px rgba(0,0,0,.5);
+}
+.btn-dark, .btn-dark:focus, .btn-dark:hover {
+  background: #1e2127;
+}
+.btn-red {
+  background: #a02424;
+}
+.btn-dark-input:hover {
+  transform: translateY(0);
+  box-shadow: 0 7px 10px -1px rgba(0,0,0,.37);
+}
+.bg-dark {
+  background-color: #434857 !important;
+}
+.navbar, .dark-container, .dropdown-menu {
+  box-shadow: 0px 7px 10px -1px rgba(0,0,0,.37);
+}
+.dropdown-menu {
+  border: none;
+  border-radius: 0;
+}
+.dropdown-menu, .dropdown-item, .dropdown-item:focus {
+  background: #1e2127;
+}
+.dropdown-item, .dropdown-item:focus {
+  color: #d8d8d8;
+  transition: all .3s cubic-bezier(.175,.885,.32,1.275);
+}
+.dropdown-item:hover {
+  background: #15171c;
+  color: #fff;
+}
+.bg-dark .dropdown-menu, .bg-dark .dropdown-item {
+  background: #434857;
+}
+.bg-dark .dropdown-item:hover {
+  background: #585e72;
+}
+.main-container {
+  height: 100%;
+  width: 100%;
+}
+.dark-container {
+  width:100%;
+  margin-top: 2vh;
+  border: none;
+  border-radius: 0;
+  background: #434857;
+}
+.dark-container .card-header, .dark-container .card-body {
+  border-radius: 0;
+  color: white;
+}
+.dark-container .card-header {
+  background: #585e72;
+  border-bottom: 3px solid #4b5563;
+  transition: all .3s cubic-bezier(.175,.885,.32,1.275);
+  font-family: 'Arimo', sans-serif;
+}
+.dark-container .card-header:hover {
+  cursor: pointer;
+  box-shadow: 0px 7px 10px -1px rgba(0,0,0,.37);
+  transform: translateY(-3px);
+  border-bottom: 3px solid #585e72;
+}
+.dark-container .card-text {
+  color: #eaeaea;
+}
+.dark-modal .modal-content {
+  background-color: #434857;
+  border-radius: 0;
+  border: none;
+  color: #eaeaea;
+}
+.dark-modal .modal-header {
+  background-color: #585e72;
+  color: #fff;
+}
+.dark-modal .modal-header .close,
+.dark-modal .modal-header .close:focus {
+  color: #d8d8d8;
+  text-shadow: none;
+}
+.dark-modal .modal-header .close:hover {
+  color: #fff;
+  opacity: 1;
+}
+.dark-modal .modal-header,
+.dark-modal .modal-footer {
+  border: none;
+  border-radius: 0;
+}
+.col-sm-12,
+.col-md-4,
+.col-md-6,
+.col-md-8,
+.col-md-10,
+.col-md-12 {
+  padding: 0 5px;
+}
+.col-sm-2 {
+  width: 25%;
+}
+.col-sm-4 {
+  width: 33.333333%;
+}
+.col-sm-6 {
+  width: 50%;
+}
+.col-sm-8 {
+  width: 66.666667%;
+}
+.col-sm-10 {
+  width: 75%;
+}
+.table-custom td {
+  vertical-align: middle;
+  padding: 1.3vh 1vw;
+}
+.table-custom p {
+	margin: 0;
+}
+.table-custom a {
+  margin-left: 1vw;
+}
+.btn-dark[type="number"] {
+  padding-right: 1vh;
+  padding-left: 3.5vh;
+}
+.table-custom .btn-dark[type="number"] {
+  width: 12vh;
+}
+.table-custom th {
+  padding: .75rem 1vw;
+}
+.cart-button-row .col-sm-8, .cart-button-row .col-sm-4 {
+  padding: 0;
+}
+.p-default {
+  vertical-align: middle;
+}
+.payments img {
+  width: 50px;
+}
+.payments p {
+  margin-bottom: 0;
+  font-size: 3vh;
+  margin-left: 1vh;
+}
+.payments hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-top: 1px solid #ffffff;
+}
+.footer hr {
+  background: #1e2127;
+  margin: 7vh 0 2vh;
+}
+.footer .btn {
+  margin-bottom: 1vh;
+}
+.minepos-link {
+  margin-top: 1vh;
+  color: #a2a6ac;
+}
+.minepos-link a, .minepos-link a:focus {
+  color: #d8d8d8;
+}
+.minepos-link a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.p-icon, .payment-gateway-logo {
+	vertical-align: middle;
+}
+.payment-gateway-logo {
+	width: 50%;
+}
+.btn-dark-select {
+  padding: 1.36vh 2vw !important;
+  height: 100% !important;
+}
+#tc-link {
+  max-width: 123px
+}
+::-webkit-scrollbar {
+    width: 16px;
+}
+::-webkit-scrollbar-corner {
+    background: #434857;
+}
+::-webkit-scrollbar-thumb {
+    background: #434857;
+}
+::-webkit-scrollbar-track {
+    background: #585e72;
+}
+
+.MinePoSHR{
+  border-top: 1px solid rgb(222, 226, 230);
+}

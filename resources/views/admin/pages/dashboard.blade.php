@@ -10,34 +10,42 @@ All the important stuff in one place
 
 @section('content')
 
+<div class="col-12">
+            <!-- Custom Tabs -->
+            <div class="card">
+              <div class="card-header d-flex p-0">
+                <h3 class="card-title p-3">Info</h3>
+                <ul class="nav nav-pills ml-auto p-2">
+                  <li class="nav-item"><a class="nav-link active" href="#tab_1" data-toggle="tab">Today</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">7 Days</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#tab_3" data-toggle="tab">30 Days</a></li>
+                  
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="tab-pane active" id="tab_1">
+                   @include("admin.parts.dashboard.infobar", ["days"=>1])
+                  </div>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="tab_2">
+                    @include("admin.parts.dashboard.infobar", ["days"=>7])
+                  </div>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="tab_3">
+                    @include("admin.parts.dashboard.infobar", ["days"=>30])
+                  </div>
+                  <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- ./card -->
+          </div>
 
-<ul class="nav nav-tabs" id="dateRange" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="today-tab" data-toggle="tab" href="#today" role="tab" aria-controls="today" aria-selected="true">Today</a>
-  </li>
-  <li class="nav-item active">
-    <a class="nav-link" id="week-tab" data-toggle="tab" role="tab" href="#week" aria-controls="week" aria-selected="false">7 Days</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="month-tab" data-toggle="tab" role="tab" href="#month" aria-controls="month" aria-selected="false">30 Days</a>
-  </li>
-</ul>
-<div class="tab-content" id="dateRangeContent">
-	<div class="tab-pane fade" id="today" role="tabpanel" aria-labelledby="today-tab">
-  		<?php $days=1;?>
-		@include("admin.parts.dashboard.infobar")
-	</div>
-  <div class="tab-pane fade active in" id="week" role="tabpanel" aria-labelledby="week-tab">
-  	  	<?php $days=7;?>
-		@include("admin.parts.dashboard.infobar")
-  </div>
-  <div class="tab-pane fade" id="month" role="tabpanel" aria-labelledby="month-tab">
-  	  	<?php $days=30;?>
-		@include("admin.parts.dashboard.infobar")
-  </div>
-</div>
 
-<form action="{{route('admin.dd')}}" method="POST" class="form">
+
+<!-- <form action="{{route('admin.dd')}}" method="POST" class="form">
 	{{csrf_field()}}
 	<div class="form-group command-inputs">
 
@@ -56,7 +64,7 @@ All the important stuff in one place
 	
 
 <input type="submit" class="btn btn-success" name="Submit">
-</form>
+</form> -->
 @endsection
 
 

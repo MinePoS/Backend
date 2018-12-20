@@ -9,13 +9,14 @@ Here you can manage or create categories
 @endsection
 
 @section('content')
+<div class="container-fluid">
 <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Categories</h3>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Categories</h3>
 
-              <div class="box-tools">
+              <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <!-- <input name="table_search" class="form-control pull-right" placeholder="Search" type="text"> -->
 
@@ -25,14 +26,14 @@ Here you can manage or create categories
                 </div>
               </div>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
+            <!-- /.card-header -->
+            <div class="card-body">
               <table class="table table-hover">
                 <tbody><tr>
-                  <th>ID</th>
+                  <th style="width:5%;">ID</th>
                   <th>Name</th>
                   <th>Short Description</th>
-                  <th>Actions</th>
+                  <th style="width:20%;">Actions</th>
                 </tr>
 			    @foreach ($categories as $category)
 			        <tr>
@@ -48,9 +49,10 @@ Here you can manage or create categories
               </tbody></table>
               {{ $categories->links() }}
             </div>
-            <!-- /.box-body -->
+            <!-- /.card-body -->
           </div>
-          <!-- /.box -->
+          <!-- /.card -->
         </div>
       </div>
+    </div>
 @endsection

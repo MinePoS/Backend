@@ -111,6 +111,18 @@ class HomeController extends Controller
         
     }
 
+    public function setCurrency($currency){
+        if(is_integer($currency)){
+            if(\App\VirtualCurrency::find($currency) != null){
+                Request()->session()->put('currency', $currency);
+            }
+        }else{
+             Request()->session()->put('currency', $currency);
+        }
+        
+        return redirect()->back();
+    }
+
     public function viewCheckout(){
         if(\Cart::count() == 0){
             return redirect()->route('store.viewcart');

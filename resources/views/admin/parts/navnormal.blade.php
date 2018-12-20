@@ -1,8 +1,8 @@
-       <li class="nav-item"><a href="{{Route('admin.dashboard')}}" class="nav-link @if(\Request::is('admin/dashboard')) active @endif"><i class="fa fa-dashboard nav-icon"></i> <span>Dashboard</span></a></li>
+       <li class="nav-item"><a href="{{Route('admin.dashboard')}}" class="nav-link @if(\Request::is('admin/dashboard')) active @endif"><i class="fa fa-dashboard nav-icon"></i> <p>Dashboard</p></a></li>
 
         @if(\Auth::user()->can('list product') || \Auth::user()->can('create product'))
-                <li class="nav-item has-treeview @if(\Request::is('admin/products*')) active @endif">
-                  <a class="nav-link" href="#">
+                <li class="nav-item has-treeview">
+                  <a class="nav-link @if(\Request::is('admin/products*')) active @endif" href="#">
                     <i class="nav-icon fa fa-folder-open"></i>
           <p>
             Products
@@ -36,6 +36,25 @@
                     @if(\Auth::user()->can('list category'))
                     <li class="nav-item"><a class="nav-link" href="{{Route('admin.Categories')}}"><i class="fa fa-list nav-icon"></i> Manage Categories</a></li>
                     @endif
+                  </ul>
+                </li>
+        @endif
+
+        @if(\Auth::user()->can('list virtual currency'))
+                <li class="nav-item has-treeview @if(\Request::is('admin/coupons*')) active @endif">
+                  <a class="nav-link" href="#">
+                    <i class="fa fa-money nav-icon"></i>
+                    <p>
+            Virtual Currency
+            <i class="right fa fa-angle-left"></i>
+          </p>
+                  </a>
+                  <ul class="nav nav-treeview" style="display: none;">
+                    
+                    <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-list nav-icon"></i> View Accounts</a></li>
+                   
+                    <li class="nav-item"><a class="nav-link" href="{{Route('admin.virtual-currencies.transactions')}}"><i class="fa fa-exchange nav-icon"></i> View Transactions</a></li>
+                    
                   </ul>
                 </li>
         @endif

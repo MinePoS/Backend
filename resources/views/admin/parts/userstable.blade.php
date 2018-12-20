@@ -1,17 +1,18 @@
+<div class="container-fluid">
 <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Users</h3>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Users</h3>
 
-              <div class="box-tools">
+              <div class="card-tools">
 
-                   @can('create user') <a href="{{Route('admin.users.new')}}" class="btn btn-success"><i class="fa fa-plus"></i> New</a> @endcan
+                   @can('create user') <a href="{{Route('admin.users.new')}}" class="btn btn-success" style="margin-top:-3px;"><i class="fa fa-plus"></i> New</a> @endcan
 
               </div>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
+            <!-- /.card-header -->
+            <div class="card-body table-responsive no-padding">
               <table class="table table-hover">
                 <tbody><tr>
                   <th>ID</th>
@@ -35,8 +36,9 @@
               </tbody></table>
               {{ $users->links() }}
             </div>
-            <!-- /.box-body -->
+            <!-- /.card-body -->
           </div>
-          <!-- /.box -->
+          <!-- /.card -->
         </div>
       </div>
+</div>

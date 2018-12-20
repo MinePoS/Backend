@@ -27,13 +27,13 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition login-page">
-<div class="login-box">
+<div class="login-card">
   <div class="login-logo">
     <a href="#">{{ env('APP_NAME') }} Admin Panel</a>
   </div>
   <!-- /.login-logo -->
-  <div class="login-box-body">
-    <p class="login-box-msg">Reset Password</p>
+  <div class="login-card-body">
+    <p class="login-card-msg">Reset Password</p>
     @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
@@ -71,9 +71,9 @@
 
 
   </div>
-  <!-- /.login-box-body -->
+  <!-- /.login-card-body -->
 </div>
-<!-- /.login-box -->
+<!-- /.login-card -->
 
 <!-- jQuery 3 -->
 <script src="/admin/bower_components/jquery/dist/jquery.min.js"></script>

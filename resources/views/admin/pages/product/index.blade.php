@@ -9,13 +9,14 @@ Here you can manage or create products
 @endsection
 
 @section('content')
+<div class="container-fluid">
 <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Products</h3>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Products</h3>
 
-              <div class="box-tools">
+              <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <!-- <input name="table_search" class="form-control pull-right" placeholder="Search" type="text"> -->
 
@@ -25,8 +26,8 @@ Here you can manage or create products
                 </div>
               </div>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
+            <!-- /.card-header -->
+            <div class="card-body table-responsive no-padding">
               <table class="table table-hover">
                 <tbody><tr>
                   <th>ID</th>
@@ -50,9 +51,10 @@ Here you can manage or create products
               </tbody></table>
               {{ $products->links() }}
             </div>
-            <!-- /.box-body -->
+            <!-- /.card-body -->
           </div>
-          <!-- /.box -->
+          <!-- /.card -->
         </div>
       </div>
+</div>
 @endsection

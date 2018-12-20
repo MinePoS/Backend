@@ -9,13 +9,14 @@ Here you can view all the orders that have been created.
 @endsection
 
 @section('content')
+<div class="container-fluid">
 <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Orders</h3>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Orders</h3>
 
-              <div class="box-tools">
+              <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <!-- <input name="table_search" class="form-control pull-right" placeholder="Search" type="text"> -->
 
@@ -25,8 +26,8 @@ Here you can view all the orders that have been created.
                 </div>
               </div>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
+            <!-- /.card-header -->
+            <div class="card-body table-responsive no-padding">
               <table class="table table-hover">
                 <tbody><tr>
                   <th>ID</th>
@@ -54,9 +55,10 @@ Here you can view all the orders that have been created.
               </tbody></table>
               {{ $orders->links() }}
             </div>
-            <!-- /.box-body -->
+            <!-- /.card-body -->
           </div>
-          <!-- /.box -->
+          <!-- /.card -->
         </div>
       </div>
+</div>
 @endsection

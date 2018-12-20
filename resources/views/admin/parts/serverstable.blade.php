@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <div class="row">
         <div class="col-12">
           <div class="card">
@@ -20,6 +21,7 @@
                 <tbody><tr>
                   <th>ID</th>
                   <th>Name</th>
+                  <th>Type</th>
                   <th>Active</th>
                   <th>Last API Call</th>
                   <th>Actions</th>
@@ -28,6 +30,7 @@
                 <tr>
                   <td>{{$server->id}}</td>
                   <td>{{$server->name}}</td>
+                  <td>{{$server->type}}</td>
                     <?php if($server->enabled == true){ $status="success"; }else{ $status="danger"; }?>
                   <td><span class="badge bg-{{$status}}">@if($server->enabled == true) Enabled @else Disabled @endif</span></td>
                   <td>@if($server->last_used != null) {{$server->last_used->diffForHumans()}} @else Never used @endif</td>
@@ -42,3 +45,4 @@
           <!-- /.card -->
         </div>
       </div>
+</div>

@@ -10,23 +10,23 @@ Ohh, getting Fancy are we ;)
 
 @section('content')
 <div class="row">
-  <div class="col-xs-12">
-<div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Quick Example</h3>
+  <div class="col-6">
+<div class="card card-primary">
+            <div class="card-header with-border">
+              <h3 class="card-title">Quick Example</h3>
             </div>
-            <!-- /.box-header -->
+            <!-- /.card-header -->
             <!-- form start -->
             <form role="form" enctype="multipart/form-data" action="{{Route('admin.settings.theme.upload')}}" method="POST">
               {{csrf_field()}}
-              <div class="box-body">
+              <div class="card-body">
                 <div class="form-group">
                   <label for="theme">Theme Archive</label>
                   <input id="theme" name="theme" accept=".theme.tar.gz" type="file">
               </div>
-              <!-- /.box-body -->
+              <!-- /.card-body -->
 
-              <div class="box-footer">
+              <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
             </form>

@@ -12,15 +12,15 @@ New User
 
 <div class="col-md-12">
           <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">New User</h3>
+          <div class="card card-primary">
+            <div class="card-header with-border">
+              <h3 class="card-title">New User</h3>
             </div>
-            <!-- /.box-header -->
+            <!-- /.card-header -->
             <!-- form start -->
             <form role="form" action="{{route('admin.users.new')}}" method="POST">
             	{{csrf_field()}}
-              <div class="box-body">
+              <div class="card-body">
                 <div class="form-group">
                   <label for="name">Name</label>
                   <input class="form-control" name="name" id="name" value="" placeholder="Name" required>
@@ -47,16 +47,16 @@ New User
                 </div>
                 @endcan
               </div>
-              <!-- /.box-body -->
+              <!-- /.card-body -->
 
-              <div class="box-footer">
+              <div class="card-footer">
               	@can('edit roles')
               		<button type="submit" class="btn btn-primary">Save</button>
               	@endcan
               </div>
             </form>
           </div>
-          <!-- /.box -->
+          <!-- /.card -->
         </div>
 @endsection
 

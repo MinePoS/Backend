@@ -78,9 +78,21 @@ Route::group(['prefix' => $adminPrefix], function () {
 	Route::get('settings','Admin\SettingsController@index')->middleware('permission:edit settings')->name("admin.settings");
 	
 	Route::get('settings/payments','Admin\SettingsController@paymentsIndex')->middleware('permission:edit settings')->name("admin.settings.payments");
-
+	
 	Route::post('settings/payments','Admin\SettingsController@paymentsSave')->middleware('permission:edit settings')->name("admin.settings.payments.save");
 	
+	Route::get('settings/virtual-currencies','Admin\VirtualCurrenciesController@listCurrencies')->middleware('permission:edit settings')->name("admin.settings.virtualcurrencies");
+
+	Route::get('settings/virtual-currencies/add','Admin\VirtualCurrenciesController@addCurrency')->middleware('permission:edit settings')->name("admin.settings.virtualcurrencies.add");
+	
+	Route::post('settings/virtual-currencies/add','Admin\VirtualCurrenciesController@saveCurrency')->middleware('permission:edit settings')->name("admin.settings.virtualcurrencies.add");
+
+	Route::get('settings/virtual-currencies/edit/{currency}','Admin\VirtualCurrenciesController@editCurrency')->middleware('permission:edit settings')->name("admin.settings.virtualcurrencies.edit");
+	
+	Route::get('settings/virtual-currencies/delete/{currency}','Admin\VirtualCurrenciesController@deleteCurrency')->middleware('permission:edit settings')->name("admin.settings.virtualcurrencies.delete");
+	
+	Route::post('settings/virtual-currencies/edit/{currency}','Admin\VirtualCurrenciesController@saveCurrency')->middleware('permission:edit settings')->name("admin.settings.virtualcurrencies.edit");
+
 	Route::get('settings/pterodactyl','Admin\SettingsController@showPterodactyl')->middleware('permission:edit settings')->name("admin.settings.pterodactyl");
 	Route::post('settings/pterodactyl','Admin\SettingsController@savePterodactyl')->middleware('permission:edit settings')->name("admin.settings.pterodactyl");
 
@@ -98,6 +110,8 @@ Route::group(['prefix' => $adminPrefix], function () {
 	Route::get('settings/theme/set/{themeName}','Admin\Settings\ThemeController@set')->middleware('permission:edit settings')->name("admin.settings.theme.set");
 	Route::get('settings/theme/upload','Admin\Settings\ThemeController@uploadform')->middleware('permission:edit settings')->name("admin.settings.theme.upload");
 	Route::POST('settings/theme/upload','Admin\Settings\ThemeController@upload')->middleware('permission:edit settings')->name("admin.settings.theme.upload");
+
+	Route::get('virtual-currencies/transactions','Admin\VirtualCurrenciesController@listTransactions')->name("admin.virtual-currencies.transactions");
 
 	Route::get('settings/updates','Admin\SettingsController@viewUpdate')->middleware('permission:edit settings')->name("admin.settings.update");
 	Route::post('settings/updates','Admin\SettingsController@doUpdate')->middleware('permission:edit settings')->name("admin.settings.update");

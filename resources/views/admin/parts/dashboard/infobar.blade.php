@@ -1,21 +1,26 @@
 <div class="row">
         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
+          <div class="small-box bg-info">
+               <div class="inner">
               <h3>{{count(\App\Order::lastDays($days))}}</h3>
               <p>New Orders</p>
             </div>
-            <div class="icon"> 
-              <i class="ion ion-bag"></i>
+              <div class="icon">
+                <i class="fa fa-shopping-cart"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                More info <i class="fa fa-arrow-circle-right"></i>
+              </a>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
+
+
         </div>
+
+
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-green">
+          <div class="small-box bg-success">
             <div class="inner">
             	@if(\App\Order::moneyReceivedDays($days) == null)
             		<h3>None</h3>
@@ -33,10 +38,10 @@
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-yellow">
+          <div class="small-box bg-warning">
             <div class="inner">
             	@if(\App\Order::topUsernameDays($days) != "None")
-				<h4>{{\App\Order::topUsernameDays($days)->first()->username}}</h4>
+				      <h3>{{\App\Order::topUsernameDays($days)->first()->username}}</h3>
             	@else
             	<h3>{{\App\Order::topUsernameDays($days)}}</h3>
             	@endif
@@ -52,7 +57,7 @@
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-red">
+          <div class="small-box bg-danger">
             <div class="inner">
             	@if(\App\Order::topUsernameDays($days) != "None")
 				<h3>{{\App\Order::topUsernameDays($days)->count()}}</h3>

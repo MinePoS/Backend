@@ -10,16 +10,16 @@ Eye, Nice to see you want to use our discord intergration
 
 @section('content')
 <div class="col-md-8">
-          <div class="box box-info">
-            <div class="box-header">
-              <h3 class="box-title">Discord
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Discord
            
               </h3>
             </div>
-            <!-- /.box-header -->
+            <!-- /.card-header -->
             <form action="{{route('admin.settings.discord')}}" method="POST">
             	{{csrf_field()}}
-            <div class="box-body pad">
+            <div class="card-body pad">
           							
 			        
 			          <div class="checkbox icheck">
@@ -40,33 +40,33 @@ Eye, Nice to see you want to use our discord intergration
                   <input class="form-control" required id="orderlink" type="text" name="order_link" value="{{\Setting::get('DISCORD_ORDER_WEBHOOK')}}"/>
               
             </div>
-			<div class="box-footer">
+			<div class="card-footer">
               		<button type="submit" class="btn btn-primary">Save</button>
               </div>
         </form>
           </div>
-          <!-- /.box -->
+          <!-- /.card -->
         </div>
 
 
 <div class="col-md-4">
-          <div class="box box-success">
-            <div class="box-header">
-              <h3 class="box-title">Test webhooks
+          <div class="card card-success">
+            <div class="card-header">
+              <h3 class="card-title">Test webhooks
               </h3>
             </div>
-            <!-- /.box-header -->
+            <!-- /.card-header -->
            <form action="{{route('admin.settings.discord.test')}}" method="POST">
             	{{csrf_field()}}
-            <div class="box-body pad">
+            <div class="card-body pad">
             	This test process will attempt to send messages to both the webhooks
             </div>
-			<div class="box-footer">
+			<div class="card-footer">
               	<button type="submit" class="btn btn-primary">Lets Go!</button>
               </div>
           </form>
           </div>
-          <!-- /.box -->
+          <!-- /.card -->
         </div>
 @endsection
 

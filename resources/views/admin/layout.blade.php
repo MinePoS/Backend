@@ -1,4 +1,5 @@
-<html style="height: auto;"><head>
+<html>
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>@yield('title') | {{ env('APP_NAME') }} Admin</title>
@@ -11,6 +12,11 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('assets/admin/dist/css/adminlte.min.css')}}">
+<style type="text/css">
+  .small-box .icon {
+    top: 10px !important;
+  }
+</style>
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   
@@ -27,11 +33,16 @@
   @yield('head')
   
 </head>
-<body class="sidebar-mini sidebar-open" style="height: auto;">
+<body class="hold-transition sidebar-mini" style="height: auto;">
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">    
+  <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+      <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+      </li>
+    </ul>
     <ul class="navbar-nav ml-auto">
     <!-- User Account: style can be found in dropdown.less -->
     
@@ -56,11 +67,11 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 597px;">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 597px;overflow:hidden;">
     <!-- Brand Logo -->
   <a href="{{Route('admin.dashboard')}}" class="brand-link">
-      <img src="{{url('assets/logo.png')}}" alt="MinePoS Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="logo-lg">{{ env('APP_NAME') }}</span>
+      <img src="{{url('assets/menulogo.png')}}" alt="MinePoS Logo" class="brand-image" style="opacity: .8">
+      <span class="brand-text font-weight-light">{{ env('APP_NAME') }}</span>
     </a>
   
     <!-- Sidebar -->
@@ -154,7 +165,12 @@
     <a href="#" style="color:transparent;">Oof</a>
   </footer>
 
-<div id="sidebar-overlay"></div></div>
+<!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+    </div>
 <!-- ./wrapper -->
 
 <!-- jQuery -->
@@ -168,6 +184,6 @@
 <!-- AdminLTE App -->
 <script src="{{asset('assets/admin/dist/js/adminlte.js')}}"></script>
 <script src="{{asset('assets/admin/dist/js/demo.js')}}"></script>
-
+@yield("extra")
 
 </body></html>

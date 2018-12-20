@@ -10,17 +10,17 @@ Here you can change the look of your store
 
 @section('content')
 <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Installed Themes</h3>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Installed Themes</h3>
 
-              <div class="box-tools">
+              <div class="card-tools">
                		<a href="{{Route('admin.settings.theme.upload')}}" class="btn btn-success"><i class="fa fa-plus"></i> Install</a>
               </div>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
+            <!-- /.card-header -->
+            <div class="card-body table-responsive no-padding">
               <table class="table table-hover">
                 <tbody><tr>
                   <th>Theme Name</th>
@@ -56,9 +56,9 @@ Here you can change the look of your store
               </tbody></table>
          
             </div>
-            <!-- /.box-body -->
+            <!-- /.card-body -->
           </div>
-          <!-- /.box -->
+          <!-- /.card -->
         </div>
       </div>
 @endsection
