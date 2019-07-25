@@ -20,25 +20,25 @@ class APIController extends Controller
     	return(array("success"=>true,"name"=>$server->name));
     }
 
-    function getCategory(){
-    	$server= \Request::get('server');
-    	return(array("success"=>true,"name"=>$server->name));
+    function getCategories(){
+        $server= \Request::get('server');
+        return(array("success"=>true,"name"=>$server->name,"data"=>\App\Category::where("visible",1)->get()));
+    }
+
+    function getCategory(int $id){
+    	$server = \Request::get('server');
+        $c = \App\Category::find($id);
+        if($c == null){
+            return(array("success"=>false,"name"=>$server->name,"error"=>"No Category Exists with that ID"));
+        }
+    	return(array("success"=>true,"name"=>$server->name,"category"=>$c,"data"=>\App\Product::where('category_id',$id)->get()));
     }
 
     function getCurrencies(){
         $server= \Request::get('server');
         $data = array();
-        $data["data"] = array();
+        $data["data"] = VirtualCurrency::all();
         $data["name"] = $server->name;
-        foreach(VirtualCurrency::all() as $c){
-            $tmp = array(
-                "id"=>$c->id,
-                "name"=>$c->name,
-                "worth"=>$c->worth
-            );
-            array_push($data["data"], $tmp);
-        }
-
         $data["success"] = true;
         return $data;
     }

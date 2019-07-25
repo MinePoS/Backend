@@ -38,7 +38,10 @@ Yay! Donation Perks
                     	
                     </textarea>
                 </div>
-
+        <div class="form-group">
+                  <label for="short_desc">Material</label>
+                  <input class="form-control" name="material" id="material" placeholder="CHEST" value="CHEST" required>
+        </div>
                <div class="form-group">
                   <label for="image">Image</label>
                   <input class="form-control" name="image" id="image" placeholder="Image (TEMP UNTIL I CODE UPLOAD SYSTEM)" required>
@@ -204,7 +207,7 @@ function makeCommandsSection(id, name){
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
-    CKEDITOR.replace('desc');
+    ClassicEditor.create(document.getElementById("desc"));
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',

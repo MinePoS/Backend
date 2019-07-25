@@ -47,6 +47,7 @@ class CategoryController extends Controller
     $category->short_desc = request("short_desc");
     $category->visible = (request("visible") != null);
     $category->featured = (request("featured") != null);
+    $category->material = request("material");
     
     $category->parent_id = request("parent");
 
@@ -92,7 +93,7 @@ class CategoryController extends Controller
         $category->visible = (request("visible") != null);
         $category->featured = (request("featured") != null);
         $category->parent_id = request("parent");
-
+$category->material = request("material");
         $category->save();
         session()->flash('good', "'$category->name' saved");
         return redirect()->route('admin.Categories');

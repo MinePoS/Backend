@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/','APIController@checkConnection');
+Route::get('/get-categories','APIController@getCategories');
+Route::get('/get-category/{id}','APIController@getCategory');
 Route::get('/get-currencies','APIController@getCurrencies');
 Route::get('/get-currencies-for-user','APIController@getCurrenciesForUser');
 Route::get('/add-currencies-for-user','APIController@addCurrencyForUser');

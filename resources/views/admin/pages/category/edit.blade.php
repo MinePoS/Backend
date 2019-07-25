@@ -38,7 +38,12 @@ Made a mistake? No Prob-Lamo
 				<div class="form-group">
                   <label for="short_desc">Short Description</label>
                   <input class="form-control" name="short_desc" id="short_desc" placeholder="Short category description" value="{{$category->short_desc}}" required>
-                </div>
+        </div>
+
+        <div class="form-group">
+                  <label for="short_desc">Material</label>
+                  <input class="form-control" name="material" id="material" placeholder="CHEST" value="{{$category->material}}" required>
+        </div>
 
 				<div class="form-group">
                   <label for="visible">Visible</label>
@@ -92,14 +97,18 @@ Made a mistake? No Prob-Lamo
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
-    CKEDITOR.replace('desc');
-    $('input').iCheck({
+    // 
+    
+    //setTimeout(function(){
+$('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' /* optional */
     });
-
     $('.parent').select2();
+ClassicEditor.create(document.getElementById("desc"));
+    //},1000);
+
   })
 
 

@@ -37,8 +37,10 @@ Yay! Donation Perks
                     <textarea id="desc" name="desc" rows="10" cols="80" style="visibility: hidden; display: none;"> 
                       {!! $product->description !!}
                     </textarea>
-                </div>
-
+        <div class="form-group">
+                  <label for="short_desc">Material</label>
+                  <input class="form-control" name="material" id="material" placeholder="CHEST" value="{{$product->material}}" required>
+        </div>
                <div class="form-group">
                   <label for="image">Image</label>
                   <input class="form-control" name="image" value="{{$product->image}}" id="image" placeholder="Image (TEMP UNTIL I CODE UPLOAD SYSTEM)" required>
@@ -79,7 +81,7 @@ Yay! Donation Perks
                   <select class="parent" id="parent" name="parent">
                 @foreach(\App\Category::all() as $category)
                   @if($category->parent_id == null)
-                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    <option value="{{$category->id}}" @if($category->id == $product->category_id) selected=true @endif>{{$category->name}}</option>
                   @endif
                        @endforeach
           </select>
@@ -89,7 +91,7 @@ Yay! Donation Perks
               <!-- /.card-body -->
 
               <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Create</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
               </div>
             </form>
           </div>
@@ -165,8 +167,9 @@ Yay! Donation Perks
 
 }
 function addCommand(element){
-  var sid = $(element).parent().attr("serverid");
-  var sname = $(element).parent().attr("servername");
+  window.tmp = element;
+  var sid = $(element).attr("serverid");
+  var sname = $(element).attr("servername");
   
   var list = $(element).parent().find(".command-list")[0];
   
@@ -214,7 +217,7 @@ function makeCommandsSection(id, name){
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
-    CKEDITOR.replace('desc');
+    ClassicEditor.create(document.getElementById("desc"));
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',
@@ -231,6 +234,8 @@ function makeCommandsSection(id, name){
       <?php $server = \App\Server::find($key); ?>
      @if(!($server == null))
         var section = makeCommandsSection({{$key}}, "{{$server->name}}");
+        window.sec = section;
+        console.log("called");
         @foreach($command as $cmd)
         var command = addCommand(section);
           $(command).find("input").val("{{$cmd}}");

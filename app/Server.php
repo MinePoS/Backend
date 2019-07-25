@@ -63,7 +63,7 @@ class Server extends Model
 		    $curl = curl_init();
 			curl_setopt_array($curl, array(
 			    CURLOPT_RETURNTRANSFER => 1,
-			    CURLOPT_URL => $base_link."?command=".$command,
+			    CURLOPT_URL => $base_link."?".http_build_query(array('command'=>$command)),
 			    CURLOPT_HTTPHEADER => array( 
 			    	$authorization,
 			    	"Accept: application/vnd.pterodactyl.v1+json",
@@ -74,10 +74,12 @@ class Server extends Model
 			));
 			$result = curl_exec($curl);
 			curl_close($curl);
+			
 			if($result == ""){
 				Log::info("[$this->name] Command Ran: $command");
 				return true;
 			}else{
+				Log::info("ERROR: $result");
 				return false;
 			}
 			

@@ -39,7 +39,10 @@ Keeping it all organised? Nice!
                   <label for="short_desc">Short Description</label>
                   <input class="form-control" name="short_desc" id="short_desc" placeholder="Short category description" required>
                 </div>
-
+        <div class="form-group">
+                  <label for="short_desc">Material</label>
+                  <input class="form-control" name="material" id="material" placeholder="CHEST" value="CHEST" required>
+        </div>
 				<div class="form-group">
                   <label for="visible">Visible</label>
                   <input type="checkbox" id="visible" value="1" name="visible"> 
@@ -92,7 +95,7 @@ Keeping it all organised? Nice!
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
-    CKEDITOR.replace('desc');
+    ClassicEditor.create(document.getElementById("desc"));
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',

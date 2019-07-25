@@ -65,8 +65,10 @@ class HomeController extends Controller
     public function checkout(){
 
         $commands = array();
+		$products = array();
         foreach(\Cart::content() as $item){
             $product = \App\Product::find($item->id);
+			array_push( $products, $item->id );
             $commandTmp = $product->commands;
             $commandTmp = str_replace("{username}", \Store::username(), $commandTmp);
             $commandTmp = json_decode($commandTmp, true);
@@ -98,6 +100,8 @@ class HomeController extends Controller
             $order = new Order;
             $order->username = \Store::username();
             $order->commands =  $commands;
+            $order->products =  json_encode($products);
+            $order->gateway =  $gateway;
             //die($commands);
             $order->total = \Cart::subtotal();
             $order->save();

@@ -52,6 +52,7 @@ class ProductController extends Controller
     $product->stock = 999999;
     $product->sold = 0; 
     $product->commands = json_encode(Request("commands"));
+    $product->material = request("material");
 
     $product->save();
 
@@ -96,7 +97,7 @@ class ProductController extends Controller
             $product->category_id = request("parent");
             $product->stock = 999999;
             $product->commands = json_encode(Request("commands"));
-
+            $product->material = request("material");
             $product->save();
 
             session()->flash('good', $product->name.' updated');
