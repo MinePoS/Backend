@@ -46,6 +46,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        //if($this->isHttpException($exception)){
+            if($exception->getStatusCode() == 403){
+                dd("admin 403: ".$request->url());
+            }
+        //}
         return parent::render($request, $exception);
     }
 }

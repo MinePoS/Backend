@@ -9,9 +9,16 @@
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
+        "akaunting/setting": "^1.0",
+        "barryvdh/laravel-omnipay": "0.3.x",
         "fideloper/proxy": "^4.0",
+        "igaster/laravel-theme": "^2.0",
+        "jeroennoten/laravel-adminlte": "^1.25",
         "laravel/framework": "5.8.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "omnipay/paypal": "^3.0",
+        "spatie/laravel-permission": "^2.37",
+        "stripe/stripe-php": "^6.40"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
