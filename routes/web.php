@@ -92,6 +92,14 @@ Route::get('/flash',function(){
     		echo("$bigName   :   $name <br>");
     	}
     });
+
+
+    Route::get('/perm-seed',function(){
+        $perms = \Spatie\Permission\Models\Permission::all();
+        foreach($perms as $p){
+            echo("Permission::create(['name' => '$p->name']);<br>");
+        }
+    });
 });
 
 
