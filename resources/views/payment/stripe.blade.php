@@ -1,6 +1,3 @@
-<script src="https://js.stripe.com/v3/"></script>
-<form action="/charge" method="post" id="payment-form">
-	@csrf
   <div class="form-row">
     <label for="card-element">
       Credit or debit card
@@ -11,12 +8,26 @@
 
     <!-- Used to display form errors. -->
     <div id="card-errors" role="alert"></div>
+<div class="col">
+      <label for="name">
+        Name
+      </label>
+      <input id="name" name="name" placeholder="Jenny Rosen" required>
+    </div>
+    <div class="col">
+        <label for="email">
+          Email Address
+        </label>
+        <input id="email" name="email" type="email" placeholder="jenny.rosen@example.com" required>
+      </div>
   </div>
-</form>
+
 
 <script type="text/javascript">
+function stripeSetup(){
 	// Create a Stripe client.
-var stripe = Stripe('{{env('STRIPE_PUBLIC_KEY')}}');
+
+var stripe = Stripe('{{setting('STRIPE_PUBLIC')}}');
 
 // Create an instance of Elements.
 var elements = stripe.elements();
@@ -71,6 +82,7 @@ form.addEventListener('submit', function(event) {
     }
   });
 });
+}
 
 // Submit the form with the token ID.
 function stripeTokenHandler(token) {

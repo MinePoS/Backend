@@ -86,7 +86,7 @@ return [
     |
     */
 
-    'dashboard_url' => '/admin/home',
+    'dashboard_url' => '/admin/dashboard',
 
     'logout_url' => '/admin/logout',//route('logout'),
 
@@ -115,16 +115,24 @@ return [
             'url'  => 'admin/dashboard',
             'icon' => 'dashboard',
             'can'  => 'view-dashboard',
-        ],        [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text' => 'Servers',
+            'url'  => 'admin/servers/',
+            'can'  => 'list-servers',
+            'icon' => 'server'
+        ],
+        [
+            'text' => 'Players',
+            'url'  => 'admin/players/',
+            'can'  => 'list-players',
+            'icon' => 'users'
+        ],
+        [
+            'text' => 'Categories',
+            'url'  => 'admin/categories/',
+            'can'  => 'list-categories',
+            'icon' => 'folder'
         ],
         'ACCOUNT SETTINGS',
         [
@@ -175,5 +183,6 @@ return [
         'datatables' => true,
         'select2'    => true,
         'chartjs'    => true,
+        'icheck' => true,
     ],
 ];

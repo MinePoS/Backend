@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
   <link rel="stylesheet" type="text/css" href="{{theme_url('includes/css/main.css')}}">
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
   <div class="container">
@@ -24,9 +25,7 @@
 
         <a class="btn btn-dark top-btn float-md-right dropdown-toggle" href="#" id="currency" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{\Store::getCurrentCurencyString()}}</a>
        <div class="dropdown-menu" aria-labelledby="currency">
-        @foreach(\App\VirtualCurrency::all() as $c)
-          <a class="dropdown-item" href="{{Route('store.setcurrency',['currency'=>$c->id])}}">{{$c->name}}</a>
-          @endforeach
+       
           <a class="dropdown-item" href="{{Route('store.setcurrency',['currency'=>'USD'])}}">USD</a>
         </div>
         
@@ -92,7 +91,30 @@
   </div>
 </div>
 </div>
-    @include('parts.footer')
+
+@if(Session::has('error-model'))
+<div class="modal fade show" id="error-model" tabindex="-1" role="dialog" aria-hidden="true" style="display: block;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Error</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{Session::get('error-model')}}  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+@endif
+
+
+@include('parts.footer')
 @yield('end_of_body')
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

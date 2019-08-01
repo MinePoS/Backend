@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->string('short_desc');
             $table->boolean('visible')->default(true);
             $table->boolean('featured')->default(false);
+            $table->integer('parent_id')->nullable();
             $table->timestamps();
         });
     }

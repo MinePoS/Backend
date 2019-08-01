@@ -21,12 +21,33 @@ class Stripe extends Gateway{
 		if($this->order == null){
 			return "";
 		}
+		$email = json_decode($this->order->order_data,true)["email"];
+		$items= json_decode(json_decode($this->order->order_data,true)["products"],true);
+		$itemCount = count($items);
+		$desc = "Minecraft Donation from: ".$this->order->getPlayer()->username." for ".$itemCount." item(s)";
+		
+
 		if($this->order->status == "awaiting_payment"){
-			$charge = \Stripe\Charge::create(['amount' => $this->order->cost*100, 'currency' => 'usd', 'source' => $token]);
+
+
+		foreach($items as $item){
+			$item = \App\Product::find($item);
+			$desc = $desc."\r\n".$item->name;
+		}
+
+			$charge = \Stripe\Charge::create([
+				'amount' => $this->order->cost*100,
+				'currency' => 'usd',
+				'source' => $token,
+				'description' => $desc,
+				'receipt_email' => $email,
+			]);
 			if($charge->status == "succeeded" && $charge->paid == true){
 				$this->order->status = "paid";
 				$this->order->save();
 			}
+
+
 			return $charge;
 		}else{
 			return false;

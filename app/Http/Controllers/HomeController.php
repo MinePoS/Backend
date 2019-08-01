@@ -27,11 +27,30 @@ class HomeController extends Controller
 
         $output = curl_exec($ch);
         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch); 
+        curl_close($ch);
+
         if($httpcode == 200){
             $arr = json_decode($output,true);
+
+            $player = null;
+            if(\App\Player::where('uuid',$arr['id'])->count() == 0){
+                $player = new \App\Player;
+                $player->username = $arr["name"];
+                $player->uuid = $arr["id"];
+                $player->save();
+            }else{
+                $player = \App\Player::where('uuid',$arr['id'])->get()->first();
+            }
+
+            if($player->isBanned()){
+                $ban = $player->bans()->get()->last();
+                \Session::flash("error-model","This player has been bannd from access the store. Reason: $ban->comment");
+                return redirect()->back();
+            }
+
             session(['username' => $arr["name"]]);
             session(['uuid' => $arr["id"]]);
+            session(['player' => $player]);
         }
 
         return redirect()->back();
@@ -43,6 +62,10 @@ class HomeController extends Controller
 
     public function showCategory(Category $category){
         return view('category')->with(['category'=>$category]);
+    }
+
+    public function paymentStipe(){
+
     }
 
     public function paymentDone(){
@@ -66,28 +89,30 @@ class HomeController extends Controller
 
         $commands = array();
         $products = array();
-        foreach(\Cart::content() as $item){
-            $product = \App\Product::find($item->id);
-            array_push( $products, $item->id );
-            $commandTmp = $product->commands;
-            $commandTmp = str_replace("{username}", \Store::username(), $commandTmp);
-            $commandTmp = json_decode($commandTmp, true);
-
-            $i = 0;
-            while($i != $item->qty){
-                foreach($commandTmp as $cmdIndex => $cmdValue){
-                    if(!(isset($commands[$cmdIndex]))){
-                        $commands[$cmdIndex] = array();
-                    }
-                    foreach($cmdValue as $cmd){
-                    array_push($commands[$cmdIndex] , $cmd);
-
-                    }
-                }
-                $i++;
-            }
+        
+         foreach(\Cart::content() as $item){
+             $product = \App\Product::find($item->id);
+             array_push( $products, $item->id );
         }
-        $commands = json_encode($commands,true);
+        //     $commandTmp = $product->commands;
+        //     $commandTmp = str_replace("{username}", \Store::username(), $commandTmp);
+        //     $commandTmp = json_decode($commandTmp, true);
+
+        //     $i = 0;
+        //     while($i != $item->qty){
+        //         foreach($commandTmp as $cmdIndex => $cmdValue){
+        //             if(!(isset($commands[$cmdIndex]))){
+        //                 $commands[$cmdIndex] = array();
+        //             }
+        //             foreach($cmdValue as $cmd){
+        //             array_push($commands[$cmdIndex] , $cmd);
+
+        //             }
+        //         }
+        //         $i++;
+        //     }
+        // }
+        // $commands = json_encode($commands,true);
 
         if(\Request("tos") == null ){
              return redirect()->back();
@@ -96,19 +121,56 @@ class HomeController extends Controller
              return redirect()->back();
         }
         $gateway = Request("gateway");
+        $player_id = 0;
+        if(\App\Player::where("username",\Store::username())->count() > 0){
+            $player_id = \App\Player::where("username",\Store::username())->get()[0]->id;
+        }else{
+            $p = new \App\Player;
+            $p->username = \Store::username();
+            $p->uuid = \Store::uuid();
+            $p->save();
+            $player_id = $p->id;
+        }
         if($gateway == "paypal"){
             $order = new Order;
-            $order->username = \Store::username();
-            $order->commands =  $commands;
-            $order->products =  json_encode($products);
-            $order->gateway =  $gateway;
+            $order->player_id = $player_id;
+            $order->order_data =  array("commands"=>$commands,"products"=>json_encode($products));
+            $order->status =  $awaiting_payment;
+            $order->gateway = "\App\Gateways\PayPal";
             //die($commands);
-            $order->total = \Cart::subtotal();
+            $order->cost = \Cart::subtotal();
             $order->save();
 
             Log::info("Sending to paypal");
             \Cart::destroy();
             return view("SendToPayPal")->with('order',$order);
+        }else if($gateway == "stripe"){
+        $email = Request("email");
+        $name = Request("name");
+
+            Log::info("Stripe Order Placed!");
+            $order = new Order;
+            $order->player_id = $player_id;
+            $order->order_data =  json_encode(array("commands"=>$commands,"products"=>json_encode($products),"email"=>$email,"name"=>$name));
+            $order->status =  "awaiting_payment";
+            $order->payment_gateway = "\App\Gateways\Stripe";
+            //die($commands);
+            $order->cost = \Cart::subtotal();
+            $order->save();
+
+            $payment = $order->PaymentProvider()->requestPayment($_POST["stripeToken"]);
+
+            if($payment != false && $payment->paid == true){
+                $player = \App\Player::find($player_id);
+                \App\QueuedCommand::sendCommandWithPlayer(\App\Server::find(1),"give $player->username diamond 1",$player,true);
+                
+                \App\QueuedCommand::sendCommand(\App\Server::find(1),"bc Thank you $player->username for donating!");
+
+                \Cart::destroy();
+                return redirect()->route("store.paymentdone");
+            }else{
+                dd("FAILED!");
+            }
         }else{
              return redirect()->back();
         }

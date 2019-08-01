@@ -8,7 +8,7 @@
 								@foreach($orders as $order)
 								<div class="payment-row row">
 									<div class="col-sm-12" style="padding: 0">
-										<img src="{{$order->getHead()}}">{{$order->username}} ({{Store::moneyFormat($order->total)}} {{$order->currency}})
+										<img src="{{$order->getHead()}}">{{$order->getUsername()}} (${{Store::moneyFormat($order->cost)}})
 									</div>
 								</div>
 								@if($orders->last() != $order)

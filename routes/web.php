@@ -49,9 +49,69 @@ Route::group(['prefix' => 'admin'], function () {
 	Auth::routes(["register" => false]);
 	Route::group(['middleware'=>"auth"], function () {
     	Route::get('/dashboard',function(){ return view('admin.dashboard');})->name("admin.dashboard");
+    	Route::get('/',function(){ return view('admin.dashboard');});
     	Route::get('/profile',"Admin\ProfileController@viewProfile")->name("admin.profile");
+    });
+
+    Route::get('/servers','Admin\ServerController@index')->name("admin.servers.index");
+    Route::get('/servers/create','Admin\ServerController@create')->name("admin.servers.create");
+    Route::post('/servers/create','Admin\ServerController@store')->name("admin.servers.store");
+    Route::get('/servers/{server}/delete','Admin\ServerController@delete')->name("admin.servers.delete");
+    Route::get('/servers/{server}/rekey','Admin\ServerController@rekey')->name("admin.servers.rekey");
+    Route::get('/servers/{server}/edit','Admin\ServerController@edit')->name("admin.servers.edit");
+    Route::post('/servers/{server}/edit','Admin\ServerController@update')->name("admin.servers.update");
+
+
+    Route::get('/categories','Admin\CategoryController@index')->name("admin.categories.index");
+    Route::get('/categories/create','Admin\CategoryController@create')->name("admin.categories.create");
+    Route::post('/categories/create','Admin\CategoryController@store')->name("admin.categories.store");
+    Route::get('/categories/{category}/delete','Admin\CategoryController@delete')->name("admin.categories.delete");
+    Route::get('/categories/{category}/rekey','Admin\CategoryController@rekey')->name("admin.categories.rekey");
+    Route::get('/categories/{category}/edit','Admin\CategoryController@edit')->name("admin.categories.edit");
+    Route::post('/categories/{category}/edit','Admin\CategoryController@update')->name("admin.categories.update");
+
+    Route::get('/players','Admin\PlayerController@index')->name('admin.players.index');
+    Route::get('/players/{player}','Admin\PlayerController@show')->name('admin.players.show');
+    Route::get('/players/{player}/unban','Admin\PlayerController@unban')->name('admin.players.unban');
+    Route::get('/players/{player}/ban','Admin\PlayerController@ban')->name('admin.players.ban');
+    Route::post('/players/{player}/ban','Admin\PlayerController@addBan')->name('admin.players.ban');
+
+Route::get('/flash',function(){
+	Session::flash("swal","Testing");
+	Session::flash("good","Testing");
+	Session::flash("bad","Testing");
+	return Redirect()->route("admin.servers.index");
+});
+
+    Route::get('/permission-list', function(){
+    	$perms = \Spatie\Permission\Models\Permission::all();
+    	foreach ($perms as $perm) {
+            $name = $perm->name;
+            $bigName = str_replace("-", " ", $name);
+            $bigName = ucfirst(strtolower($bigName));
+    		echo("$bigName   :   $name <br>");
+    	}
     });
 });
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/checkapikey',function(){
+	$name = \Request()->input('name');
+	$key = \Request()->input('key');
+	if($name == null || $key == null){
+		return "deny";
+	}
+
+	if($key == env('WEBSITE_WEBSOCKET_APIKEY')){
+		return env('WEBSITE_WEBSOCKET_NAME');
+	}else{
+		$server = \App\Server::fromAPIKEY($key);
+		if(count($server) == 1){
+			return $server[0]->name;
+		}
+		return "deny";
+	}
+});
