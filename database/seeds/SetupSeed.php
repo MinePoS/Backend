@@ -13,9 +13,9 @@ class SetupSeed extends Seeder
      */
     public function run()
     {
-    	Permission::truncate();
-    	Role::truncate();
-    	Admin::truncate();
+    	//Permission::truncate();
+    	//Role::truncate();
+    	//Admin::truncate();
 
         Permission::create(['name' => 'view-dashboard']);
 		Permission::create(['name' => 'view-profile']);
