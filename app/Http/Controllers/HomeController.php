@@ -44,7 +44,7 @@ class HomeController extends Controller
 
             if($player->isBanned()){
                 $ban = $player->bans()->get()->last();
-                \Session::flash("error-model","This player has been bannd from access the store. Reason: $ban->comment");
+                \Session::flash("error-model","This player has been banned from access the store. Reason: $ban->comment");
                 return redirect()->back();
             }
 
