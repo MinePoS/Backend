@@ -47,7 +47,18 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create-products');
+            $product->name = request("name");
+            $product->image = request("image");
+            $product->description = request("desc");
+            $product->price = request("price");
+            $product->category_id = request("parent");
+            $product->stock = 999999;
+            $product->commands = json_encode(Request("commands"));
+            $product->short_desc = request("short_desc");
+            $product->save();
 
+            session()->flash('good', $product->name.' created');
+            return redirect()->route('admin.products.index');
     }
 
     /**

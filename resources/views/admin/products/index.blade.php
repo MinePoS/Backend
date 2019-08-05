@@ -11,7 +11,7 @@
               <h3 class="card-title">Products</h3>
 
               @can('create-products')
-        <div class="box-tools">
+                  <div class="box-tools">
                 <a href="{{Route('admin.products.create')}}" class="btn btn-success">Create</a>
               </div>
               @endcan
