@@ -47,6 +47,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create-products');
+            $product = new Product;
             $product->name = request("name");
             $product->image = request("image");
             $product->description = request("desc");
