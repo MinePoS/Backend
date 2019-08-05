@@ -21,6 +21,7 @@
                   <th>Username</th>
                   <th>UUID</th>
                   <th>Orders</th>
+                  <th>Actions</th>
                 </tr>
                 @foreach($players as $player)
                 <tr>

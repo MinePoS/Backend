@@ -74,7 +74,7 @@
                                     </tr>
                                     @else
                                     @foreach($bans as $ban)
-                                    <tr style="background-color:@if($ban->trashed()) #fbd6d6 @else #e0fbd6 @endif ;">
+                                    <tr style="background-color:@if($ban->trashed()) #fbd6d6 @else #e0fbd6 @endif ; @if($ban->trashed())text-decoration: line-through;@endif">
                                         <th scope="row">{{$ban->id}}</th>
                                         <td>@if($ban->created_by_id != null) @if(\App\Admin::find($ban->created_by_id) != null) {{\App\Admin::find($ban->created_by_id)->name}} @else
                                         Deleted Admin
@@ -119,7 +119,7 @@
                   <th>Cost</th>
                   <!-- <th>Actions</th> -->
                 </tr>
-                @foreach($player->orders()->get() as $order)
+                @foreach($player->orders()->get()->reverse() as $order)
                 <?php
                   $items= json_decode(json_decode($order->order_data,true)["products"],true);
                   $itemCount = count($items);

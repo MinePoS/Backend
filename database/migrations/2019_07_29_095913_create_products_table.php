@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
            $table->increments('id');
             $table->string('name');
             $table->text('description');
+            $table->string('short_desc');
             $table->text('commands');
             $table->text('image');
             $table->double('price', 8, 2);

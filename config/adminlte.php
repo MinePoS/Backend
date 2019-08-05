@@ -134,6 +134,12 @@ return [
             'can'  => 'list-categories',
             'icon' => 'folder'
         ],
+        [
+            'text' => 'Products',
+            'url'  => 'admin/products/',
+            'can'  => 'list-products',
+            'icon' => 'folder'
+        ],
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',

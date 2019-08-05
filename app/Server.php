@@ -8,6 +8,9 @@ class Server extends Model
 {
 	protected $fillable = ['*'];
 
+public static function getAllEnabled(){
+	return Server::where("enabled",1)->get();
+}
 	public function sendQueuedCommand($cmd){
 		\App\SocketClient::daemonSend($this->getSocketCommand($cmd));
 	}

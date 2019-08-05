@@ -48,3 +48,21 @@ $key = \Request()->input("key");
 	Log::info("Commands Ran");
 	$command->delete();
 });
+
+Route::get('/checkapikey',function(){
+	$name = \Request()->input('name');
+	$key = \Request()->input('key');
+	if($name == null || $key == null){
+		return "deny";
+	}
+
+	if($key == env('WEBSITE_WEBSOCKET_APIKEY')){
+		return env('WEBSITE_WEBSOCKET_NAME');
+	}else{
+		$server = \App\Server::fromAPIKEY($key);
+		if(count($server) == 1){
+			return $server[0]->name;
+		}
+		return "deny";
+	}
+});

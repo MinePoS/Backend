@@ -66,9 +66,15 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/categories/create','Admin\CategoryController@create')->name("admin.categories.create");
     Route::post('/categories/create','Admin\CategoryController@store')->name("admin.categories.store");
     Route::get('/categories/{category}/delete','Admin\CategoryController@delete')->name("admin.categories.delete");
-    Route::get('/categories/{category}/rekey','Admin\CategoryController@rekey')->name("admin.categories.rekey");
     Route::get('/categories/{category}/edit','Admin\CategoryController@edit')->name("admin.categories.edit");
     Route::post('/categories/{category}/edit','Admin\CategoryController@update')->name("admin.categories.update");
+
+    Route::get('/products','Admin\ProductController@index')->name("admin.products.index");
+    Route::get('/products/create','Admin\ProductController@create')->name("admin.products.create");
+    Route::post('/products/create','Admin\ProductController@store')->name("admin.products.store");
+    Route::get('/products/{product}/delete','Admin\ProductController@delete')->name("admin.products.delete");
+    Route::get('/products/{product}/edit','Admin\ProductController@edit')->name("admin.products.edit");
+    Route::post('/products/{product}/edit','Admin\ProductController@update')->name("admin.products.update");
 
     Route::get('/players','Admin\PlayerController@index')->name('admin.players.index');
     Route::get('/players/{player}','Admin\PlayerController@show')->name('admin.players.show');
@@ -107,19 +113,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/checkapikey',function(){
-	$name = \Request()->input('name');
-	$key = \Request()->input('key');
-	if($name == null || $key == null){
-		return "deny";
-	}
+    $name = \Request()->input('name');
+    $key = \Request()->input('key');
+    if($name == null || $key == null){
+        return "deny";
+    }
 
-	if($key == env('WEBSITE_WEBSOCKET_APIKEY')){
-		return env('WEBSITE_WEBSOCKET_NAME');
-	}else{
-		$server = \App\Server::fromAPIKEY($key);
-		if(count($server) == 1){
-			return $server[0]->name;
-		}
-		return "deny";
-	}
+    if($key == env('WEBSITE_WEBSOCKET_APIKEY')){
+        return env('WEBSITE_WEBSOCKET_NAME');
+    }else{
+        $server = \App\Server::fromAPIKEY($key);
+        if(count($server) == 1){
+            return $server[0]->name;
+        }
+        return "deny";
+    }
 });

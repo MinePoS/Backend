@@ -5,6 +5,9 @@
 						<div class="payments">
 							<div class="container-fluid">
 								<?php $orders = \App\Order::lastProcessed(5); ?>
+								@if($orders->count() == 0)
+								<center>No Payments</center>
+								@else
 								@foreach($orders as $order)
 								<div class="payment-row row">
 									<div class="col-sm-12" style="padding: 0">
@@ -15,6 +18,7 @@
 								<hr>
 								@endif
 								@endforeach
+								@endif
 							</div>
 						</div>
 					</div>

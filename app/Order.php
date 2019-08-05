@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use \App\QueuedCommand;
 
 class Order extends Model
 {
@@ -17,7 +18,11 @@ class Order extends Model
 
     public static function lastProcessed($num)
     {
-    	return \App\Order::where("status","paid")->orderBy('created_at', 'desc')->take($num)->get();
+    	return \App\Order::where("status","paid")->orWhere("status","fulfilled")->orderBy('created_at', 'desc')->take($num)->get();
+    }
+
+    public function commandsLeft(){
+        return QueuedCommand::where('order_id', $this->id);
     }
 
     public function getHead(){

@@ -17,7 +17,7 @@ class PlayerController extends Controller
 
     public function index(){
     	$this->authorize('list-players');
-    	$players = Player::paginate(15);
+    	$players = Player::orderBy('id','DESC')->paginate(15);
     	return view('admin.players.index',["players"=>$players]);
     }
 

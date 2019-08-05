@@ -6,7 +6,7 @@ class Stripe extends Gateway{
 	protected $order;
 
 	public function __construct(){
-		\Stripe\Stripe::setApiKey(env('STRIPE_API_KEY'));
+		\Stripe\Stripe::setApiKey(\Setting::get('STRIPE_PRIVATE'));
 	}
 
 	protected function name() {
@@ -21,6 +21,7 @@ class Stripe extends Gateway{
 		if($this->order == null){
 			return "";
 		}
+
 		$email = json_decode($this->order->order_data,true)["email"];
 		$items= json_decode(json_decode($this->order->order_data,true)["products"],true);
 		$itemCount = count($items);
@@ -35,13 +36,26 @@ class Stripe extends Gateway{
 			$desc = $desc."\r\n".$item->name;
 		}
 
-			$charge = \Stripe\Charge::create([
-				'amount' => $this->order->cost*100,
-				'currency' => 'usd',
-				'source' => $token,
-				'description' => $desc,
-				'receipt_email' => $email,
+			// $charge = \Stripe\Charge::create([
+			// 	'amount' => $this->order->cost*100,
+			// 	'currency' => 'usd',
+			// 	'source' => $token,
+			// 	'description' => $desc,
+			// 	'receipt_email' => $email,
+			// ]);
+
+			// $intent = \Stripe\PaymentIntent::retrieve(
+		 //        $token
+		 //     );
+		 //      $intent->confirm();
+
+
+			$charges = \Stripe\Charge::all([
+			    'payment_intent' => $token,
+			    'limit' => 1,
 			]);
+
+			$charge = $charges->data[0];
 			if($charge->status == "succeeded" && $charge->paid == true){
 				$this->order->status = "paid";
 				$this->order->save();

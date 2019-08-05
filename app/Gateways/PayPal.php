@@ -16,4 +16,8 @@ class PayPal extends Gateway{
     public function processPayment($payment){
     	return("Payment Done: $payment");
     }
+
+    public function requestPayment($request){
+
+}
 }
