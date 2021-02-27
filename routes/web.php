@@ -15,6 +15,15 @@ Route::post('login','HomeController@login')->name("store.login");
 Route::get('login','HomeController@index')->name("store.login");
 Route::get('logout','HomeController@logout')->name("store.logout");
 
+
+// Route for each store.
+Route::domain('{storename}.minepos.store')->group(function () {
+    Route::get('/', 'HomeController@index', function ($storename) {
+        //name("store.index");
+    });
+});
+
+// Line Below this one will need commented out
 Route::get('/', 'HomeController@index')->name("store.index");
 Route::get('/setcurrency/{currency}', 'HomeController@setCurrency')->name("store.setcurrency");
 

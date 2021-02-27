@@ -2,6 +2,15 @@
 
 use Illuminate\Support\Str;
 
+
+function definedOrEnv($defineVar, $envVar){
+	if(defined($defineVar)){
+		return constant($defineVar);
+	}else{
+		return env($envVar);
+	}
+}
+
 return [
 
     /*
@@ -48,9 +57,9 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => definedOrEnv("DB_NAME", "DB_DATABASE"),
+            'username' => definedOrEnv("DB_USER", "DB_USERNAME"),
+            'password' => definedOrEnv("DB_PASS", "DB_PASSWORD"),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',

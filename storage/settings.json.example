@@ -1,0 +1,11 @@
+{
+	"theme":"buycraft",
+	"admin":{"url":"admin"},
+	"home_title":"Your New MinePoS Installation!",
+	"home_desc":"<p>Welcome to your new <a href=\"https:\/\/minepos.net\"><strong>MinePoS<\/strong><\/a><strong> <\/strong>install, we hope that you will have a good time using our software. If you have any problems contact one of our developers. You can edit this message in the admin settings.<\/p>",
+	"STRIPE_ENABLED": true,
+	"STRIPE_PUBLIC": "",
+	"STRIPE_PRIVATE": "",
+	"tos_title":"TOS HERE",
+	"tos_desc":"TOS HERE"
+}
