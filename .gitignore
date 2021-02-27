@@ -24,3 +24,4 @@ Homestead.json
 
 !resources/views/vendor/
 !public/vendor/
+!public/vendor/adminlte/vendor/
