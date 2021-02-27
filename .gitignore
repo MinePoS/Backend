@@ -23,3 +23,4 @@ Homestead.json
 .rocketeer/
 
 !resources/views/vendor/
+!public/vendor/
